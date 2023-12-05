@@ -1,0 +1,602 @@
+[
+    {
+        "id": "3978",
+        "name_uz": "Peshonasiga televizor yopishgan bolaning sarguzashtlari",
+        "name_ru": "Peshonasiga televizor yopishgan bolaning sarguzashtlari",
+        "name_en": "Peshonasiga televizor yopishgan bolaning sarguzashtlari",
+        "lang": "uz",
+        "authors": [
+            {
+                "id": "57",
+                "name_uz": "Xudoyberdi",
+                "lastName_uz": "Toʻxtaboyev",
+                "name_ru": "Худойберди",
+                "lastName_ru": "Тоʻхтабоев",
+                "name_en": "Xudoyberdi",
+                "lastName_en": "Toʻxtaboyev",
+                "cover": "https:\/\/api.kitob.itsm.uz\/data\/authors\/cover\/57.jpg",
+                "count": {
+                    "total": 57,
+                    "books": 15,
+                    "audiobooks": 42
+                }
+            }
+        ],
+        "rating": {
+            "average": "",
+            "count": "0"
+        },
+        "cover": "https:\/\/api.kitob.itsm.uz\/data\/books\/cover\/3978.jpg",
+        "top": "1"
+    },
+    {
+        "id": "3977",
+        "name_uz": "Aka-uka grimm ertaklari",
+        "name_ru": "Aka-uka grimm ertaklari",
+        "name_en": "Aka-uka grimm ertaklari",
+        "lang": "uz",
+        "authors": [
+            {
+                "id": "499",
+                "name_uz": "Ertaklar",
+                "lastName_uz": "Ertaklar",
+                "name_ru": "Ertaklar",
+                "lastName_ru": "Ertaklar",
+                "name_en": "Ertaklar",
+                "lastName_en": "Ertaklar",
+                "cover": "https:\/\/api.kitob.itsm.uz\/data\/authors\/cover\/499.jpg",
+                "count": {
+                    "total": 10,
+                    "books": 3,
+                    "audiobooks": 7
+                }
+            }
+        ],
+        "rating": {
+            "average": "",
+            "count": "0"
+        },
+        "cover": "https:\/\/api.kitob.itsm.uz\/data\/books\/cover\/3977.jpg",
+        "top": "1"
+    },
+    {
+        "id": "3976",
+        "name_uz": "Tez aytishlar, maqollar, topishmoqlar, she'rlar",
+        "name_ru": "Tez aytishlar, maqollar, topishmoqlar, she'rlar",
+        "name_en": "Tez aytishlar, maqollar, topishmoqlar, she'rlar",
+        "lang": "uz",
+        "authors": [
+            {
+                "id": "496",
+                "name_uz": "Bolajonlarga sovg'a",
+                "lastName_uz": "Bolajonlarga sovg'a",
+                "name_ru": "Bolajonlarga sovg'a",
+                "lastName_ru": "Bolajonlarga sovg'a",
+                "name_en": "Bolajonlarga sovg'a",
+                "lastName_en": "Bolajonlarga sovg'a",
+                "cover": "https:\/\/api.kitob.itsm.uz\/data\/authors\/cover\/496.jpg",
+                "count": {
+                    "total": 1,
+                    "books": 1,
+                    "audiobooks": 0
+                }
+            }
+        ],
+        "rating": {
+            "average": "",
+            "count": "0"
+        },
+        "cover": "https:\/\/api.kitob.itsm.uz\/data\/books\/cover\/3976.jpg",
+        "top": "1"
+    },
+    {
+        "id": "3975",
+        "name_uz": "Oqshom ertaklari",
+        "name_ru": "Oqshom ertaklari",
+        "name_en": "Oqshom ertaklari",
+        "lang": "uz",
+        "authors": [
+            {
+                "id": "499",
+                "name_uz": "Ertaklar",
+                "lastName_uz": "Ertaklar",
+                "name_ru": "Ertaklar",
+                "lastName_ru": "Ertaklar",
+                "name_en": "Ertaklar",
+                "lastName_en": "Ertaklar",
+                "cover": "https:\/\/api.kitob.itsm.uz\/data\/authors\/cover\/499.jpg",
+                "count": {
+                    "total": 10,
+                    "books": 3,
+                    "audiobooks": 7
+                }
+            }
+        ],
+        "rating": {
+            "average": "",
+            "count": "0"
+        },
+        "cover": "https:\/\/api.kitob.itsm.uz\/data\/books\/cover\/3975.jpg",
+        "top": "1"
+    },
+    {
+        "id": "3974",
+        "name_uz": "Ot kishnagan oqshom",
+        "name_ru": "Ot kishnagan oqshom",
+        "name_en": "Ot kishnagan oqshom",
+        "lang": "uz",
+        "authors": [
+            {
+                "id": "44",
+                "name_uz": "Tog'ay",
+                "lastName_uz": "Murod",
+                "name_ru": "Тоғай",
+                "lastName_ru": "Мурод",
+                "name_en": "Tog'ay",
+                "lastName_en": "Murod",
+                "cover": "https:\/\/api.kitob.itsm.uz\/data\/authors\/cover\/44.jpg",
+                "count": {
+                    "total": 10,
+                    "books": 5,
+                    "audiobooks": 5
+                }
+            }
+        ],
+        "rating": {
+            "average": "",
+            "count": "0"
+        },
+        "cover": "https:\/\/api.kitob.itsm.uz\/data\/books\/cover\/3974.jpg",
+        "top": "1"
+    },
+    {
+        "id": "3973",
+        "name_uz": "G'aroyib bolalar",
+        "name_ru": "G'aroyib bolalar",
+        "name_en": "G'aroyib bolalar",
+        "lang": "uz",
+        "authors": [
+            {
+                "id": "79",
+                "name_uz": "Aziz",
+                "lastName_uz": "Nesin",
+                "name_ru": "Азиз",
+                "lastName_ru": "Несин",
+                "name_en": "Aziz",
+                "lastName_en": "Nesin",
+                "cover": "https:\/\/api.kitob.itsm.uz\/data\/authors\/cover\/79.jpg",
+                "count": {
+                    "total": 19,
+                    "books": 6,
+                    "audiobooks": 13
+                }
+            }
+        ],
+        "rating": {
+            "average": "",
+            "count": "0"
+        },
+        "cover": "https:\/\/api.kitob.itsm.uz\/data\/books\/cover\/3973.jpg",
+        "top": "1"
+    },
+    {
+        "id": "3972",
+        "name_uz": "Oq nilufarlar yurtida",
+        "name_ru": "Oq nilufarlar yurtida",
+        "name_en": "Oq nilufarlar yurtida",
+        "lang": "uz",
+        "authors": [
+            {
+                "id": "509",
+                "name_uz": "Grigoriy",
+                "lastName_uz": "Petrov",
+                "name_ru": "Grigoriy",
+                "lastName_ru": "Petrov",
+                "name_en": "Grigoriy",
+                "lastName_en": "Petrov",
+                "cover": "https:\/\/api.kitob.itsm.uz\/data\/authors\/cover\/509.jpg",
+                "count": {
+                    "total": 2,
+                    "books": 1,
+                    "audiobooks": 1
+                }
+            }
+        ],
+        "rating": {
+            "average": "",
+            "count": "0"
+        },
+        "cover": "https:\/\/api.kitob.itsm.uz\/data\/books\/cover\/3972.jpg",
+        "top": "1"
+    },
+    {
+        "id": "3971",
+        "name_uz": "Shodivoyning g'aroyib sarguzashtlari",
+        "name_ru": "Shodivoyning g'aroyib sarguzashtlari",
+        "name_en": "Shodivoyning g'aroyib sarguzashtlari",
+        "lang": "uz",
+        "authors": [
+            {
+                "id": "502",
+                "name_uz": "Otabek",
+                "lastName_uz": "Quvvat",
+                "name_ru": "Otabek",
+                "lastName_ru": "Quvvat",
+                "name_en": "Otabek",
+                "lastName_en": "Quvvat",
+                "cover": "https:\/\/api.kitob.itsm.uz\/data\/authors\/cover\/502.jpg",
+                "count": {
+                    "total": 1,
+                    "books": 1,
+                    "audiobooks": 0
+                }
+            }
+        ],
+        "rating": {
+            "average": "",
+            "count": "0"
+        },
+        "cover": "https:\/\/api.kitob.itsm.uz\/data\/books\/cover\/3971.jpg",
+        "top": "1"
+    },
+    {
+        "id": "3970",
+        "name_uz": "Bo'ladigan bolalar",
+        "name_ru": "Bo'ladigan bolalar",
+        "name_en": "Bo'ladigan bolalar",
+        "lang": "uz",
+        "authors": [
+            {
+                "id": "506",
+                "name_uz": "Po'lat",
+                "lastName_uz": "Mo'min",
+                "name_ru": "Po'lat",
+                "lastName_ru": "Mo'min",
+                "name_en": "Po'lat",
+                "lastName_en": "Mo'min",
+                "cover": "https:\/\/api.kitob.itsm.uz\/data\/authors\/cover\/506.jpg",
+                "count": {
+                    "total": 1,
+                    "books": 1,
+                    "audiobooks": 0
+                }
+            }
+        ],
+        "rating": {
+            "average": "",
+            "count": "0"
+        },
+        "cover": "https:\/\/api.kitob.itsm.uz\/data\/books\/cover\/3970.jpg",
+        "top": "1"
+    },
+    {
+        "id": "3969",
+        "name_uz": "Xalq bo'l elim",
+        "name_ru": "Xalq bo'l elim",
+        "name_en": "Xalq bo'l elim",
+        "lang": "uz",
+        "authors": [
+            {
+                "id": "81",
+                "name_uz": "Muhammad",
+                "lastName_uz": "Yusuf",
+                "name_ru": "Муҳаммад",
+                "lastName_ru": "Юсуф",
+                "name_en": "Muhammad",
+                "lastName_en": "Yusuf",
+                "cover": "https:\/\/api.kitob.itsm.uz\/data\/authors\/cover\/81.jpg",
+                "count": {
+                    "total": 32,
+                    "books": 8,
+                    "audiobooks": 24
+                }
+            }
+        ],
+        "rating": {
+            "average": "",
+            "count": "0"
+        },
+        "cover": "https:\/\/api.kitob.itsm.uz\/data\/books\/cover\/3969.jpg",
+        "top": "1"
+    },
+    {
+        "id": "3968",
+        "name_uz": "Tabiiy fanlar 6-sinf (Rus tili)",
+        "name_ru": "Tabiiy fanlar 6-sinf (Rus tili)",
+        "name_en": "Tabiiy fanlar 6-sinf (Rus tili)",
+        "lang": "uz",
+        "authors": [
+            {
+                "id": "428",
+                "name_uz": "O'qituvchi",
+                "lastName_uz": "-",
+                "name_ru": "O'qituvchi",
+                "lastName_ru": "-",
+                "name_en": "O'qituvchi",
+                "lastName_en": "-",
+                "cover": "https:\/\/api.kitob.itsm.uz\/data\/authors\/cover\/428.jpg",
+                "count": {
+                    "total": 639,
+                    "books": 609,
+                    "audiobooks": 30
+                }
+            }
+        ],
+        "rating": {
+            "average": "",
+            "count": "0"
+        },
+        "cover": "https:\/\/api.kitob.itsm.uz\/data\/books\/cover\/3968.png",
+        "top": "0"
+    },
+    {
+        "id": "3967",
+        "name_uz": "Ikki eshik orasi",
+        "name_ru": "Ikki eshik orasi",
+        "name_en": "Ikki eshik orasi",
+        "lang": "uz",
+        "authors": [
+            {
+                "id": "45",
+                "name_uz": "O'tkir",
+                "lastName_uz": "Hoshimov",
+                "name_ru": "Ўткир",
+                "lastName_ru": "Ҳошимов",
+                "name_en": "O'tkir",
+                "lastName_en": "Hoshimov",
+                "cover": "https:\/\/api.kitob.itsm.uz\/data\/authors\/cover\/45.jpg",
+                "count": {
+                    "total": 3,
+                    "books": 2,
+                    "audiobooks": 1
+                }
+            }
+        ],
+        "rating": {
+            "average": "",
+            "count": "0"
+        },
+        "cover": "https:\/\/api.kitob.itsm.uz\/data\/books\/cover\/3967.jpg",
+        "top": "1"
+    },
+    {
+        "id": "3966",
+        "name_uz": "Qarg'a bilan qo'zi",
+        "name_ru": "Qarg'a bilan qo'zi",
+        "name_en": "Qarg'a bilan qo'zi",
+        "lang": "uz",
+        "authors": [
+            {
+                "id": "71",
+                "name_uz": "O'zbek xalq",
+                "lastName_uz": "ertaklari",
+                "name_ru": "Ўзбек халқ",
+                "lastName_ru": "эртаклари",
+                "name_en": "Ўзбек халқ",
+                "lastName_en": "эртаклари",
+                "cover": "https:\/\/api.kitob.itsm.uz\/data\/authors\/cover\/71.jpg",
+                "count": {
+                    "total": 202,
+                    "books": 50,
+                    "audiobooks": 152
+                }
+            }
+        ],
+        "rating": {
+            "average": "",
+            "count": "0"
+        },
+        "cover": "https:\/\/api.kitob.itsm.uz\/data\/books\/cover\/3966.jpg",
+        "top": "1"
+    },
+    {
+        "id": "3965",
+        "name_uz": "\"Ajdar\" ning tavbasi",
+        "name_ru": "\"Ajdar\" ning tavbasi",
+        "name_en": "\"Ajdar\" ning tavbasi",
+        "lang": "uz",
+        "authors": [
+            {
+                "id": "45",
+                "name_uz": "O'tkir",
+                "lastName_uz": "Hoshimov",
+                "name_ru": "Ўткир",
+                "lastName_ru": "Ҳошимов",
+                "name_en": "O'tkir",
+                "lastName_en": "Hoshimov",
+                "cover": "https:\/\/api.kitob.itsm.uz\/data\/authors\/cover\/45.jpg",
+                "count": {
+                    "total": 3,
+                    "books": 2,
+                    "audiobooks": 1
+                }
+            }
+        ],
+        "rating": {
+            "average": "",
+            "count": "0"
+        },
+        "cover": "https:\/\/api.kitob.itsm.uz\/data\/books\/cover\/3965.jpg",
+        "top": "1"
+    },
+    {
+        "id": "3964",
+        "name_uz": "Podsho bilan vazir",
+        "name_ru": "Podsho bilan vazir",
+        "name_en": "Podsho bilan vazir",
+        "lang": "uz",
+        "authors": [
+            {
+                "id": "71",
+                "name_uz": "O'zbek xalq",
+                "lastName_uz": "ertaklari",
+                "name_ru": "Ўзбек халқ",
+                "lastName_ru": "эртаклари",
+                "name_en": "Ўзбек халқ",
+                "lastName_en": "эртаклари",
+                "cover": "https:\/\/api.kitob.itsm.uz\/data\/authors\/cover\/71.jpg",
+                "count": {
+                    "total": 202,
+                    "books": 50,
+                    "audiobooks": 152
+                }
+            }
+        ],
+        "rating": {
+            "average": "",
+            "count": "0"
+        },
+        "cover": "https:\/\/api.kitob.itsm.uz\/data\/books\/cover\/3964.jpg",
+        "top": "1"
+    },
+    {
+        "id": "3962",
+        "name_uz": "Och bo'ri",
+        "name_ru": "Och bo'ri",
+        "name_en": "Och bo'ri",
+        "lang": "uz",
+        "authors": [
+            {
+                "id": "71",
+                "name_uz": "O'zbek xalq",
+                "lastName_uz": "ertaklari",
+                "name_ru": "Ўзбек халқ",
+                "lastName_ru": "эртаклари",
+                "name_en": "Ўзбек халқ",
+                "lastName_en": "эртаклари",
+                "cover": "https:\/\/api.kitob.itsm.uz\/data\/authors\/cover\/71.jpg",
+                "count": {
+                    "total": 202,
+                    "books": 50,
+                    "audiobooks": 152
+                }
+            }
+        ],
+        "rating": {
+            "average": "",
+            "count": "0"
+        },
+        "cover": "https:\/\/api.kitob.itsm.uz\/data\/books\/cover\/3962.jpg",
+        "top": "1"
+    },
+    {
+        "id": "3961",
+        "name_uz": "Zumrad va Qimmat",
+        "name_ru": "Zumrad va Qimmat",
+        "name_en": "Zumrad va Qimmat",
+        "lang": "uz",
+        "authors": [
+            {
+                "id": "71",
+                "name_uz": "O'zbek xalq",
+                "lastName_uz": "ertaklari",
+                "name_ru": "Ўзбек халқ",
+                "lastName_ru": "эртаклари",
+                "name_en": "Ўзбек халқ",
+                "lastName_en": "эртаклари",
+                "cover": "https:\/\/api.kitob.itsm.uz\/data\/authors\/cover\/71.jpg",
+                "count": {
+                    "total": 202,
+                    "books": 50,
+                    "audiobooks": 152
+                }
+            }
+        ],
+        "rating": {
+            "average": "",
+            "count": "0"
+        },
+        "cover": "https:\/\/api.kitob.itsm.uz\/data\/books\/cover\/3961.jpg",
+        "top": "1"
+    },
+    {
+        "id": "3960",
+        "name_uz": "Mening ug'rigina bolama",
+        "name_ru": "Mening ug'rigina bolama",
+        "name_en": "Mening ug'rigina bolama",
+        "lang": "uz",
+        "authors": [
+            {
+                "id": "56",
+                "name_uz": "G'afur",
+                "lastName_uz": "Gʻulom",
+                "name_ru": "Гофур",
+                "lastName_ru": "Гулом",
+                "name_en": "G'afur",
+                "lastName_en": "Gʻulom",
+                "cover": "https:\/\/api.kitob.itsm.uz\/data\/authors\/cover\/56.jpg",
+                "count": {
+                    "total": 10,
+                    "books": 6,
+                    "audiobooks": 4
+                }
+            }
+        ],
+        "rating": {
+            "average": "",
+            "count": "0"
+        },
+        "cover": "https:\/\/api.kitob.itsm.uz\/data\/books\/cover\/3960.jpg",
+        "top": "1"
+    },
+    {
+        "id": "3959",
+        "name_uz": "Ikki jayra",
+        "name_ru": "Ikki jayra",
+        "name_en": "Ikki jayra",
+        "lang": "uz",
+        "authors": [
+            {
+                "id": "510",
+                "name_uz": "Bog'ifaron",
+                "lastName_uz": "Yakkabog'iy",
+                "name_ru": "Bog'ifaron",
+                "lastName_ru": "Yakkabog'iy",
+                "name_en": "Bog'ifaron",
+                "lastName_en": "Yakkabog'iy",
+                "cover": "https:\/\/api.kitob.itsm.uz\/data\/authors\/cover\/510.jpg",
+                "count": {
+                    "total": 1,
+                    "books": 1,
+                    "audiobooks": 0
+                }
+            }
+        ],
+        "rating": {
+            "average": "",
+            "count": "0"
+        },
+        "cover": "https:\/\/api.kitob.itsm.uz\/data\/books\/cover\/3959.jpg",
+        "top": "1"
+    },
+    {
+        "id": "3958",
+        "name_uz": "O'zbegiston Respublikasi",
+        "name_ru": "O'zbegiston Respublikasi",
+        "name_en": "O'zbegiston Respublikasi",
+        "lang": "uz",
+        "authors": [
+            {
+                "id": "508",
+                "name_uz": "O'zbegiston Respublikasi",
+                "lastName_uz": "Konstitutsiyasi",
+                "name_ru": "O'zbegiston Respublikasi",
+                "lastName_ru": "Konstitutsiyasi",
+                "name_en": "O'zbegiston Respublikasi",
+                "lastName_en": "Konstitutsiyasi",
+                "cover": "https:\/\/api.kitob.itsm.uz\/data\/authors\/cover\/508.jpg",
+                "count": {
+                    "total": 1,
+                    "books": 1,
+                    "audiobooks": 0
+                }
+            }
+        ],
+        "rating": {
+            "average": "",
+            "count": "0"
+        },
+        "cover": "https:\/\/api.kitob.itsm.uz\/data\/books\/cover\/3958.jpg",
+        "top": "1"
+    }
+]
