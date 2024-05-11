@@ -1,6 +1,8 @@
-from pydantic import BaseModel
-from src.schemas.subcategory import SubCategoryInfo
 from typing import List
+
+from pydantic import BaseModel
+
+from src.schemas.subcategory import SubCategoryInfo
 
 
 class CategoryBase(BaseModel):
@@ -20,3 +22,7 @@ class CategoryInfo(CategoryBase):
     id: int
     subcategories: List[SubCategoryInfo]
     subcategory_count: int = 0
+    book_count: int = 0
+
+    class ConfigDict:
+        from_attributes = True

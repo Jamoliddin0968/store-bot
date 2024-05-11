@@ -47,3 +47,12 @@ class SubCategoryService:
         db.delete(subcategory)
         db.commit()
         return {"message": "SubCategory deleted successfully"}
+
+    @staticmethod
+    def get_or_404(db: Session, subcategory_id: int):
+        category = db.query(SubCategory).filter(
+            SubCategory.id == subcategory_id).first()
+        if not category:
+            raise HTTPException(
+                status_code=404, detail="SubCategory not found")
+        return category

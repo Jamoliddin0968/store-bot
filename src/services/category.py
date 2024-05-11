@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
-from sqlalchemy import func
-from src.models.subcategory import SubCategory
+# from sqlalchemy import func
+# from src.models.subcategory import SubCategory
 
 from src.models.category import Category
 from src.schemas.category import (CategoryCreate,  CategoryUpdate)
