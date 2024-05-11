@@ -46,8 +46,7 @@ async def get_contact(message: Message, state: FSMContext):
         phone_number = f"+{phone_number}"
     await state.set_state(Registration.language)
     telegram_id = message.from_user.id
-    user = await users_service.get_or_create(tg_user_id=telegram_id)
-    await users_service.update(user.id, {"phone_number": phone_number})
+    await state.set_data(phone_number=phone_number)
     await message.answer("Tilni tanlang", reply_markup=language_markup)
 
 

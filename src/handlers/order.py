@@ -19,6 +19,6 @@ router = Router()
 dp = Dispatcher()
 
 
-@router.message(F.text == "Buyurtma berish")
+@router.message(F.text == "🛒 Buyurtma berish")
 async def start_handler(message: types.Message):
     await message.answer("Buyurtma berish")
