@@ -44,7 +44,7 @@ async def get_contact(message: Message):
     await message.answer("Tilni tanlang", reply_markup=language_markup)
 
 
-@router.callback_query(f.text.startswith("language_"))
+@router.callback_query(F.text.startswith("language_"))
 async def callbacks_num(callback: types.CallbackQuery):
     telegram_id = callback.message.from_user.id
     lang = callback.data.split("_")[1]
