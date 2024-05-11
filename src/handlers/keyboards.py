@@ -13,9 +13,9 @@ contact_share_markup = ReplyKeyboardMarkup(
 
 language_markup = InlineKeyboardMarkup(
     keyboard=[
-        [InlineKeyboardButton(text='Uz', callback_data="uz"),
-         InlineKeyboardButton(text='Ru', callback_data="ru"),
-         InlineKeyboardButton(text='En', callback_data="en")],
+        [InlineKeyboardButton(text='Uz', callback_data="language_uz"),
+         InlineKeyboardButton(text='Ru', callback_data="language_ru"),
+         InlineKeyboardButton(text='En', callback_data="language_en")],
     ],
     resize_keyboard=True,
 )

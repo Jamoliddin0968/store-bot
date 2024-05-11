@@ -42,3 +42,12 @@ async def get_contact(message: Message):
     user = await users_service.get_or_create(tg_user_id=telegram_id)
     await users_service.update(user.id, {"phone_number": phone_number})
     await message.answer("Tilni tanlang", reply_markup=language_markup)
+
+
+@router.callback_query(f.text.startswith("language_"))
+async def callbacks_num(callback: types.CallbackQuery):
+    telegram_id = callback.message.from_user.id
+    lang = callback.data.split("_")[1]
+    user = await users_service.get_or_create(tg_user_id=telegram_id)
+    await users_service.update(user.id, {"lang": lang})
+    await callback.message.answer(f"Tilni tanlang {lang}")
