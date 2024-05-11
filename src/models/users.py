@@ -13,7 +13,7 @@ class UserLangEnum(enum.Enum):
 
 
 class Users(BaseModel):
-    __tablename__ = 'authors'
+    __tablename__ = 'users'
 
     firstname = Column(String(63), nullable=True)
 
