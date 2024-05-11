@@ -1,3 +1,4 @@
+from .keyboards import contact_share_markup, language_markup
 import io
 
 from aiogram import Dispatcher, F, Router, types
@@ -10,7 +11,7 @@ from aiogram.types.input_file import BufferedInputFile
 
 from src.services import UsersService
 
-from .keyboards import contact_share_markup, language_markup
+users_service = UsersService()
 
 router = Router()
 # router.message.filter(IsPrivateFilter())
@@ -37,6 +38,6 @@ async def get_contact(message: Message):
     else:
         phone_number = f"+{phone_number}"
     telegram_id = message.from_user.id
-    user = await UsersService.get_or_create(tg_user_id=telegram_id)
-    await UsersService.update(user.id, {"phone_number": phone_number})
+    user = await users_service.get_or_create(tg_user_id=telegram_id)
+    await users_service.update(user.id, {"phone_number": phone_number})
     await message.answer("Tilni tanlang", reply_markup=language_markup)
