@@ -32,6 +32,7 @@ dp = Dispatcher(storage=storage)
 async def lifespan(app: FastAPI):
     await bot.delete_webhook()
     await bot.set_webhook(url=WEBHOOK_URL)
+    await bot.send_message(5290603408, "ishladi")
     yield
     await bot.delete_webhook()
 
@@ -71,6 +72,5 @@ if __name__ == "__main__":
         level=logging.INFO,
         format=u'%(filename)s:%(lineno)d #%(levelname)-8s [%(asctime)s] - %(name)s - %(message)s',
     )
-    asyncio.run(test())
 
     # uvicorn.run("app:app", host="0.0.0.0", port=8000,reload=True)
