@@ -10,7 +10,7 @@ from aiogram.types.input_file import BufferedInputFile
 
 from src.services import UsersService
 
-from .keyboards import contact_share_markup, language_markup
+from .keyboards import contact_share_markup, language_markup, menu_markup
 
 users_service = UsersService()
 
@@ -50,4 +50,4 @@ async def callbacks_num(callback: types.CallbackQuery):
     lang = callback.data.split("_")[1]
     user = await users_service.get_or_create(tg_user_id=telegram_id)
     await users_service.update(user.id, {"lang": lang})
-    await callback.message.answer(f"Tilni tanlang {lang}")
+    await callback.message.answer(f"Siz {lang} tilini taladingiz", reply_markup=menu_markup)
