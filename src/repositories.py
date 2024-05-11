@@ -1,9 +1,9 @@
-from typing import Dict, Type, Union
+from typing import Dict
 
 from pydantic import BaseModel
 
 from src.database import get_db
-from src.models import Category, Users
+from src.models import Category, SubCategory, Users
 
 
 class CRUDRepository:
@@ -69,3 +69,7 @@ class UsersRepo(CRUDRepository):
 
 class CategoryRepo(CRUDRepository):
     model = Category
+
+
+class SubCategoryRepo(CRUDRepository):
+    model = SubCategory

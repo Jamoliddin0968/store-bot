@@ -42,7 +42,7 @@ settings_markup = ReplyKeyboardMarkup(
 def create_inline_buttons(prefix: str, data: List):
     return InlineKeyboardMarkup(
         inline_keyboard=[
-            [InlineKeyboardButton(text=data[i].name, callback_data=f"{prefix}{data[i].name}"),
-             InlineKeyboardButton(text=data[i+1].name, callback_data=f"{prefix}{data[i+1].name}")] for i in range(0, len(data), 2)
+            [InlineKeyboardButton(text=item.name, callback_data=f"{prefix}{item.id}")
+             for item in data[i:i+2]] for i in range(0, len(data), 2)
         ]
     )
