@@ -64,7 +64,7 @@ async def callbacks_num(message: Message, state: FSMContext):
     else:
         await message.answer("Tilni tanlang", reply_markup=language_markup)
         return None
-    data = state.get_data()
+    data = await state.get_data()
     await users_service.create({
         "tg_user_id": telegram_id,
         "lang": lang,
