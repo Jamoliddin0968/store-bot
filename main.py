@@ -2,6 +2,7 @@ import logging
 from contextlib import asynccontextmanager
 
 from aiogram import Bot, Dispatcher, Router, types
+from aiogram.enums import ParseMode
 from aiogram.fsm.storage.memory import MemoryStorage
 from fastapi import FastAPI
 
@@ -22,7 +23,7 @@ WEBHOOK_URL = config.WEBHOOK_URL + WEBHOOK_PATH
 
 storage = MemoryStorage()
 
-bot = Bot(token=config.TOKEN, parse_mode="HTML")
+bot = Bot(token=config.TOKEN)
 dp = Dispatcher(storage=storage)
 
 
@@ -30,7 +31,7 @@ dp = Dispatcher(storage=storage)
 async def lifespan(app: FastAPI):
     await bot.delete_webhook()
     await bot.set_webhook(url=WEBHOOK_URL)
-    await bot.send_message(5290603408, "ishladi")
+    # await bot.send_message(5290603408, "tg://openmessage?user_id=6501389506", parse_mode=ParseMode.MARKDOWN)
     yield
     await bot.delete_webhook()
 

@@ -3,9 +3,11 @@ from sqladmin import Admin, ModelView
 from sqladmin.authentication import AuthenticationBackend
 from starlette.applications import Starlette
 from starlette.requests import Request
+from wtforms import FileField, Form, StringField
 
 from src.database import engine
-from src.models import Category, SubCategory
+from src.models import Category, Products, SubCategory
+from src.utils import save_image
 
 # from src.infrastructure.services.token_service import TokenService
 
@@ -106,5 +108,21 @@ class SubCategoryAdmin(ModelView, model=SubCategory):
     page_size = 25
 
 
+class MyForm(Form):
+    name = StringField('Name')
+
+
+class ProductAdmin(ModelView, model=Products):
+    column_list = ["name",]
+    form_overrides = dict(image=FileField)
+
+    async def on_model_change(self, data: dict, model: Products, is_created: bool, request: Request) -> None:
+        file = data.get("image")
+        if file:
+            data["image"] = save_image(file)
+        return await super().on_model_change(data, model, is_created, request)
+
+
 admin.add_view(CategoryAdmin)
 admin.add_view(SubCategoryAdmin)
+admin.add_view(ProductAdmin)
