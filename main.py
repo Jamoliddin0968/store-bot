@@ -1,15 +1,12 @@
-
-import asyncio
-import json
 import logging
 from contextlib import asynccontextmanager
 
 from aiogram import Bot, Dispatcher, Router, types
-from aiogram.filters.callback_data import CallbackData
 from aiogram.fsm.storage.memory import MemoryStorage
 from fastapi import FastAPI
 
 from src import config
+from src.admin import app as admin_app
 from src.handlers import register_routes
 
 # from src.handlers.keyboards import view_button
@@ -27,7 +24,6 @@ storage = MemoryStorage()
 
 bot = Bot(token=config.TOKEN, parse_mode="HTML")
 dp = Dispatcher(storage=storage)
-# print(config.TOKEN)
 
 
 @asynccontextmanager
@@ -65,3 +61,4 @@ if __name__ == "__main__":
     )
 
     # uvicorn.run("app:app", host="0.0.0.0", port=8000,reload=True)
+app.mount("/", admin_app)

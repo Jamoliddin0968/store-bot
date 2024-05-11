@@ -98,10 +98,10 @@ admin = Admin(app=app, engine=engine)
 #         return await super().on_model_change(data, model, is_created, request)
 
 
-class CompanyAdmin(ModelView, model=Category):
-    icon = "fa-solid fa-company"
+class CategoryAdmin(ModelView, model=Category):
+    icon = "fa-solid fa-category"
     column_list = "__all__"
     page_size = 25
 
 
-admin.add_view(CompanyAdmin)
+admin.add_view(CategoryAdmin)

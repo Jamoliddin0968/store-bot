@@ -10,5 +10,5 @@ class Category(BaseModel):
     name = Column(String(255))
     parent_id = Column(Integer, ForeignKey('category.id'))
 
-    parent = relationship("Category", remote_side=[id])
-    children = relationship("Category")
+    # parent = relationship("Category", remote_side=[id])
+    # children = relationship("Category")
