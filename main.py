@@ -31,7 +31,7 @@ dp = Dispatcher(storage=storage)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-
+    await bot.delete_webhook()
     await bot.set_webhook(url=WEBHOOK_URL)
     await bot.send_message(5290603408, "ishladi")
     yield
@@ -49,10 +49,9 @@ register_routes(dp)
 
 @app.post(WEBHOOK_PATH)
 async def bot_webhook(update: dict):
-
     telegram_update = types.Update(**update)
     await dp.feed_update(bot=bot, update=telegram_update)
-    await bot.send_message(5290603408, json.dumps(update))
+    # await bot.send_message(5290603408, json.dumps(update))
 
 
 class MyCallback(CallbackData, prefix="my"):
