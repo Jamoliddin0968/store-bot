@@ -26,5 +26,5 @@ menu_markup = ReplyKeyboardMarkup(
         [KeyboardButton(text='Buyurtma berish')],
         [KeyboardButton(text="Sozlamalar"),
          KeyboardButton(text="Biz bilan bo'g'lanish")]
-    ]
+    ], resize_keyboard=True
 )
