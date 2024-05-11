@@ -28,3 +28,11 @@ menu_markup = ReplyKeyboardMarkup(
          KeyboardButton(text="Biz bilan bo'g'lanish")]
     ], resize_keyboard=True
 )
+
+settings_markup = ReplyKeyboardMarkup(
+    keyboard=[
+        [KeyboardButton(text="Tilni o'zgartirish")],
+        [KeyboardButton(text="Telefon raqamni o'zgartirish"),
+         KeyboardButton(text="Bosh menyu")]
+    ], resize_keyboard=True
+)
