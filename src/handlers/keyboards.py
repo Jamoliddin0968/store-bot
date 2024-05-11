@@ -1,5 +1,4 @@
-from aiogram.types import (InlineKeyboardButton, InlineKeyboardMarkup,
-                           KeyboardButton, ReplyKeyboardMarkup)
+from aiogram.types import (KeyboardButton, ReplyKeyboardMarkup)
 from aiogram.utils.i18n import gettext as _
 
 contact_share_markup = ReplyKeyboardMarkup(

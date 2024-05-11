@@ -56,6 +56,5 @@ async def callbacks_num(message: Message):
     telegram_id = message.from_user.id
     if message.text == "Uz":
         pass
-    elif message.text == "Uz":
+    elif message.text == "Ru":
         pass
-    elif
