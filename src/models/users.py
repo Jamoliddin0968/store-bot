@@ -12,11 +12,11 @@ class UserLangEnum(enum.Enum):
     uz = "uz"
 
 
-class Author(BaseModel):
+class Users(BaseModel):
     __tablename__ = 'authors'
 
-    firstname = Column(String(63))
+    firstname = Column(String(63), nullable=True)
 
-    phone_number = Column(String(15))
-    tg_user_id = Column(String(15))
+    phone_number = Column(String(15), nullable=True)
+    tg_user_id = Column(String(15), nullable=True)
     lang = Column(Enum(UserLangEnum), default=UserLangEnum.uz)

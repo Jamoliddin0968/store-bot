@@ -7,3 +7,13 @@ contact_share_markup = ReplyKeyboardMarkup(
     ],
     resize_keyboard=True,
 )
+
+
+language_markup = ReplyKeyboardMarkup(
+    keyboard=[
+        [KeyboardButton(text='Uz')],
+        [KeyboardButton(text='Ru')],
+        [KeyboardButton(text='En')],
+    ],
+    resize_keyboard=True,
+)

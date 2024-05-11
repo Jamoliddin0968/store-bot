@@ -8,7 +8,9 @@ from aiogram.types import (CallbackQuery, KeyboardButton, Message,
                            ReplyKeyboardMarkup)
 from aiogram.types.input_file import BufferedInputFile
 
-from .keyboards import contact_share_markup
+from src.services import UsersService
+
+from .keyboards import contact_share_markup, language_markup
 
 router = Router()
 # router.message.filter(IsPrivateFilter())
@@ -18,9 +20,9 @@ dp = Dispatcher()
 @router.message(Command("start"))
 async def start_handler(message: types.Message):
     await message.answer(f"Assalomu alaykum {message.from_user.first_name}")
-    description = "Assalomu alaykum ! YotiqTut onlayn magazinga xush kelibsiz."
-    description += "Привет! Добро пожаловать в интернет-журнал YatiqTut."
-    description += "Hello! Welcome to the YatiqTut online store"
+    description = "Assalomu alaykum ! YotiqTut onlayn magazinga xush kelibsiz.\n"
+    description += "Привет! Добро пожаловать в интернет-журнал YatiqTut.\n"
+    description += "Hello! Welcome to the YatiqTut online store\n"
     await message.answer(description)
     await message.answer(
         f"Iltimos telefon raqamingizni yuboring !", reply_markup=contact_share_markup
@@ -34,5 +36,7 @@ async def get_contact(message: Message):
         phone_number = phone_number
     else:
         phone_number = f"+{phone_number}"
-    telegram_id = str(message.from_user.id)
-    await message.answer("yaxshi")
+    telegram_id = message.from_user.id
+    user = await UsersService.get_or_create(tg_user_id=telegram_id)
+    await UsersService.update(user.id, {"phone_number": phone_number})
+    await message.answer("Tilni tanlang", reply_markup=language_markup)
