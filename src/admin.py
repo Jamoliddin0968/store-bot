@@ -4,7 +4,6 @@ from typing import Any
 from fastapi import Request
 from sqladmin import Admin, ModelView
 from sqladmin.authentication import AuthenticationBackend
-from sqlalchemy_mptt.mixins import BaseNestedSets
 from starlette.applications import Starlette
 from starlette.requests import Request
 
