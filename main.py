@@ -54,6 +54,12 @@ async def bot_webhook(update: dict):
     # await bot.send_message(5290603408, json.dumps(update))
 
 
+@app.get(WEBHOOK_PATH)
+async def bot_webhook(update: dict):
+    telegram_update = types.Update(**update)
+    await dp.feed_update(bot=bot, update=telegram_update)
+
+
 class MyCallback(CallbackData, prefix="my"):
     foo: str
     bar: int
