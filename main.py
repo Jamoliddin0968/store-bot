@@ -1,5 +1,6 @@
 
 import asyncio
+import json
 import logging
 from contextlib import asynccontextmanager
 
@@ -30,7 +31,7 @@ dp = Dispatcher(storage=storage)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    await bot.delete_webhook()
+
     await bot.set_webhook(url=WEBHOOK_URL)
     await bot.send_message(5290603408, "ishladi")
     yield
@@ -48,7 +49,7 @@ register_routes(dp)
 
 @app.post(WEBHOOK_PATH)
 async def bot_webhook(update: dict):
-
+    await bot.delete_webhook(5290603408, json.dumps(update))
     telegram_update = types.Update(**update)
     await dp.feed_update(bot=bot, update=telegram_update)
 
