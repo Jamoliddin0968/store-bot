@@ -6,7 +6,7 @@ from src.config import DATABASE_URL
 # SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
 
 engine = create_engine(
-    DATABASE_URL, pool_size=200, max_overflow=0, pool_recycle=3600
+    DATABASE_URL
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
