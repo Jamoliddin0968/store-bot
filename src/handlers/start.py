@@ -8,12 +8,12 @@ from aiogram.types import (CallbackQuery, KeyboardButton, Message,
                            ReplyKeyboardMarkup)
 from aiogram.types.input_file import BufferedInputFile
 
-from src.services import UsersService
+from src.repositories import UsersRepo
 
 from .keyboards import contact_share_markup, language_markup, menu_markup
 from .states import Registration
 
-users_service = UsersService()
+users_repo = UsersRepo()
 
 router = Router()
 # router.message.filter(IsPrivateFilter())
@@ -28,7 +28,7 @@ async def start_handler(message: types.Message, state: FSMContext):
     description += "Hello! Welcome to the YatiqTut online store\n"
     await message.answer(description)
     telegram_id = message.from_user.id
-    if await users_service.is_exists(tg_user_id=telegram_id):
+    if await users_repo.is_exists(tg_user_id=telegram_id):
         await message.answer(text="Bosh menyu", reply_markup=menu_markup)
     else:
         await message.answer(
@@ -45,7 +45,6 @@ async def get_contact(message: Message, state: FSMContext):
     else:
         phone_number = f"+{phone_number}"
     await state.set_state(Registration.language)
-    telegram_id = message.from_user.id
     await state.set_data(phone_number=phone_number)
     await message.answer("Tilni tanlang", reply_markup=language_markup)
 
@@ -64,7 +63,7 @@ async def callbacks_num(message: Message, state: FSMContext):
         await message.answer("Tilni tanlang", reply_markup=language_markup)
         return None
     data = await state.get_data()
-    await users_service.create({
+    await users_repo.create({
         "tg_user_id": telegram_id,
         "lang": lang,
         "phone_number": data.get("phone_number")

@@ -8,12 +8,11 @@ from aiogram.types import (CallbackQuery, KeyboardButton, Message,
                            ReplyKeyboardMarkup)
 from aiogram.types.input_file import BufferedInputFile
 
-from src.services import UsersService
+from src.repositories import CategoryRepo
 
-from .keyboards import contact_share_markup, language_markup
+from .keyboards import create_inline_buttons
 
-users_service = UsersService()
-
+category_repo = CategoryRepo()
 router = Router()
 # router.message.filter(IsPrivateFilter())
 dp = Dispatcher()
@@ -21,4 +20,6 @@ dp = Dispatcher()
 
 @router.message(F.text == "🛒 Buyurtma berish")
 async def start_handler(message: types.Message):
-    await message.answer("Buyurtma berish")
+    categories = await category_repo.get_all()
+
+    await message.answer(text="Categoritani tanlang", reply_markup=create_inline_buttons(prefix="category_", data=categories))

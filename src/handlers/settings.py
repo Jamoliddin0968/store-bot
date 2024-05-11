@@ -8,12 +8,8 @@ from aiogram.types import (CallbackQuery, KeyboardButton, Message,
                            ReplyKeyboardMarkup)
 from aiogram.types.input_file import BufferedInputFile
 
-from src.services import UsersService
-
 from .keyboards import (contact_share_markup, language_markup, menu_markup,
                         settings_markup)
-
-users_service = UsersService()
 
 router = Router()
 # router.message.filter(IsPrivateFilter())

@@ -1,4 +1,6 @@
-from aiogram.types import (KeyboardButton, ReplyKeyboardMarkup)
+from typing import List
+from aiogram.types import (
+    KeyboardButton, ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton)
 from aiogram.utils.i18n import gettext as _
 
 contact_share_markup = ReplyKeyboardMarkup(
@@ -35,3 +37,12 @@ settings_markup = ReplyKeyboardMarkup(
          KeyboardButton(text="Bosh menyu")]
     ], resize_keyboard=True
 )
+
+
+def create_inline_buttons(prefix: str, data: List):
+    return InlineKeyboardMarkup(
+        inline_keyboard=[
+            [InlineKeyboardButton(text=data[i].name, callback_data=f"{prefix}{data[i].name}"),
+             InlineKeyboardButton(text=data[i+1].name, callback_data=f"{prefix}{data[i+1].name}")] for i in range(0, len(data), 2)
+        ]
+    )

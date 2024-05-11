@@ -1,9 +1,9 @@
-from src.models import Users
 from typing import Dict, Type, Union
 
 from pydantic import BaseModel
 
 from src.database import get_db
+from src.models import Category, Users
 
 
 class CRUDRepository:
@@ -65,3 +65,7 @@ class CRUDRepository:
 
 class UsersRepo(CRUDRepository):
     model = Users
+
+
+class CategoryRepo(CRUDRepository):
+    model = Category

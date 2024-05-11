@@ -1,4 +1,3 @@
-from .keyboards import menu_markup
 import io
 
 from aiogram import Dispatcher, F, Router, types
@@ -9,11 +8,7 @@ from aiogram.types import (CallbackQuery, KeyboardButton, Message,
                            ReplyKeyboardMarkup)
 from aiogram.types.input_file import BufferedInputFile
 
-from src.services import UsersService
-
-from .keyboards import contact_share_markup, language_markup
-
-users_service = UsersService()
+from .keyboards import contact_share_markup, language_markup, menu_markup
 
 router = Router()
 # router.message.filter(IsPrivateFilter())

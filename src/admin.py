@@ -5,7 +5,7 @@ from starlette.applications import Starlette
 from starlette.requests import Request
 
 from src.database import engine
-from src.models import Category
+from src.models import Category, SubCategory
 
 # from src.infrastructure.services.token_service import TokenService
 
@@ -96,8 +96,15 @@ admin = Admin(app=app, engine=engine)
 
 class CategoryAdmin(ModelView, model=Category):
     icon = "fa-solid fa-category"
-    column_list = "__all__"
+    column_list = ["name",]
+    page_size = 25
+
+
+class SubCategoryAdmin(ModelView, model=SubCategory):
+    icon = "fa-solid fa-category"
+    column_list = ["category", "name"]
     page_size = 25
 
 
 admin.add_view(CategoryAdmin)
+admin.add_view(SubCategoryAdmin)

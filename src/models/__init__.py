@@ -5,4 +5,4 @@ from src.models.products import Products
 from src.models.subcategory import SubCategory
 from src.models.users import Users
 
-__all__ = ["Category", "Products", "Users"]
+__all__ = ["Category", "Products", "Users", "SubCategory"]
