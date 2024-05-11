@@ -50,9 +50,10 @@ register_routes(dp)
 @app.post(WEBHOOK_PATH)
 async def bot_webhook(update: dict):
     await bot.delete_webhook()
-    await bot.send_message(5290603408, json.dumps(update))
+
     telegram_update = types.Update(**update)
     await dp.feed_update(bot=bot, update=telegram_update)
+    await bot.send_message(5290603408, json.dumps(update))
 
 
 class MyCallback(CallbackData, prefix="my"):
