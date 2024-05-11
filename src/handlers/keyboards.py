@@ -11,11 +11,11 @@ contact_share_markup = ReplyKeyboardMarkup(
 )
 
 
-language_markup = InlineKeyboardMarkup(
-    inline_keyboard=[
-        [InlineKeyboardButton(text='Uz', callback_data="language_uz"),
-         InlineKeyboardButton(text='Ru', callback_data="language_ru"),
-         InlineKeyboardButton(text='En', callback_data="language_en")],
+language_markup = ReplyKeyboardMarkup(
+    keyboard=[
+        [KeyboardButton(text="🇺🇿 Uz"),
+         KeyboardButton(text='🇷🇺 Ru'),
+         KeyboardButton(text='🇺🇸 En')],
     ],
     resize_keyboard=True,
 )

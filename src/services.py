@@ -11,5 +11,12 @@ class UsersService:
             user = await self.repo.create({"tg_user_id": tg_user_id})
         return user
 
+    async def create(self, data):
+        user = await self.repo.create(data)
+        return user
+
     async def update(self, user_id, data):
         return await self.repo.update(user_id, data)
+
+    async def is_exists(self, tg_user_id):
+        return await self.repo.is_exists(tg_user_id=tg_user_id)
