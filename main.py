@@ -49,7 +49,6 @@ register_routes(dp)
 
 @app.post(WEBHOOK_PATH)
 async def bot_webhook(update: dict):
-    await bot.delete_webhook()
 
     telegram_update = types.Update(**update)
     await dp.feed_update(bot=bot, update=telegram_update)
