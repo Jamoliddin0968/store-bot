@@ -1,7 +1,4 @@
 
-from typing import Any
-
-from fastapi import Request
 from sqladmin import Admin, ModelView
 from sqladmin.authentication import AuthenticationBackend
 from starlette.applications import Starlette
