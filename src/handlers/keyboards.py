@@ -1,4 +1,6 @@
-from aiogram.types import KeyboardButton, ReplyKeyboardMarkup
+from aiogram.types import (InlineKeyboardButton, InlineKeyboardMarkup,
+                           KeyboardButton, ReplyKeyboardMarkup)
+from aiogram.utils.i18n import gettext as _
 
 contact_share_markup = ReplyKeyboardMarkup(
     keyboard=[
@@ -9,11 +11,11 @@ contact_share_markup = ReplyKeyboardMarkup(
 )
 
 
-language_markup = ReplyKeyboardMarkup(
+language_markup = InlineKeyboardMarkup(
     keyboard=[
-        [KeyboardButton(text='Uz'),
-         KeyboardButton(text='Ru'),
-         KeyboardButton(text='En')],
+        [InlineKeyboardButton(text='Uz', callback_data="uz"),
+         InlineKeyboardButton(text='Ru', callback_data="ru"),
+         InlineKeyboardButton(text='En', callback_data="en")],
     ],
     resize_keyboard=True,
 )
