@@ -19,7 +19,7 @@ router = Router()
 dp = Dispatcher()
 
 
-@router.message(Command("start"))
+@router.message(F.text == "Biz bilan bo'g'lanish")
 async def start_handler(message: types.Message):
     await message.answer(f"Assalomu alaykum {message.from_user.first_name}")
     description = "Assalomu alaykum ! YotiqTut onlayn magazinga xush kelibsiz.\n"
@@ -29,25 +29,3 @@ async def start_handler(message: types.Message):
     await message.answer(
         f"Iltimos telefon raqamingizni yuboring !", reply_markup=contact_share_markup
     )
-
-
-@router.message(F.contact)
-async def get_contact(message: Message):
-    phone_number = message.contact.phone_number
-    if phone_number[0] == "+":
-        phone_number = phone_number
-    else:
-        phone_number = f"+{phone_number}"
-    telegram_id = message.from_user.id
-    user = await users_service.get_or_create(tg_user_id=telegram_id)
-    await users_service.update(user.id, {"phone_number": phone_number})
-    await message.answer("Tilni tanlang", reply_markup=language_markup)
-
-
-@router.callback_query(F.data.startswith("language_"))
-async def callbacks_num(callback: types.CallbackQuery):
-    telegram_id = callback.message.from_user.id
-    lang = callback.data.split("_")[1]
-    user = await users_service.get_or_create(tg_user_id=telegram_id)
-    await users_service.update(user.id, {"lang": lang})
-    await callback.message.answer(f"Tilni tanlang {lang}")

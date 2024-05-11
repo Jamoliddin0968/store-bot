@@ -27,6 +27,7 @@ storage = MemoryStorage()
 
 bot = Bot(token=config.TOKEN, parse_mode="HTML")
 dp = Dispatcher(storage=storage)
+# print(config.TOKEN)
 
 
 @asynccontextmanager
@@ -46,30 +47,13 @@ app = FastAPI(lifespan=lifespan)
 # Register routes
 register_routes(dp)
 
+print(config.WEBHOOK_URL)
+
 
 @app.post(WEBHOOK_PATH)
 async def bot_webhook(update: dict):
     telegram_update = types.Update(**update)
-    await dp.feed_update(bot=bot, update=telegram_update)
-    # await bot.send_message(5290603408, json.dumps(update))
-
-
-@app.get(WEBHOOK_PATH)
-async def bot_webhook(update: dict):
-    telegram_update = types.Update(**update)
-    await dp.feed_update(bot=bot, update=telegram_update)
-
-
-class MyCallback(CallbackData, prefix="my"):
-    foo: str
-    bar: int
-
-
-@app.post('/send-message/')
-async def bot_webhook(msg: str, user_id: str, order_id: int):
-
-    await bot.send_message(user_id, msg)
-    # await state.set_state("dwadaw")
+    await dp.feed_webhook_update(bot=bot, update=telegram_update)
 
 
 async def test():
