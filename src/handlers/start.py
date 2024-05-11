@@ -29,7 +29,7 @@ async def start_handler(message: types.Message, state: FSMContext):
     await message.answer(description)
     telegram_id = message.from_user.id
     if await users_service.is_exists(tg_user_id=telegram_id):
-        message.answer(text="Bosh menyu", reply_markup=menu_markup)
+        await message.answer(text="Bosh menyu", reply_markup=menu_markup)
     else:
         await message.answer(
             f"Iltimos telefon raqamingizni yuboring !", reply_markup=contact_share_markup
@@ -52,9 +52,23 @@ async def get_contact(message: Message, state: FSMContext):
 
 
 @router.message(Registration.language)
-async def callbacks_num(message: Message):
+async def callbacks_num(message: Message, state: FSMContext):
     telegram_id = message.from_user.id
-    if message.text == "Uz":
-        pass
-    elif message.text == "Ru":
-        pass
+    lang = ""
+    if message.text == "🇺🇿 Uz":
+        lang = "uz"
+    elif message.text == "🇷🇺 Ru":
+        lang = "ru"
+    elif message.text == "🇺🇸 En":
+        lang = "en"
+    else:
+        await message.answer("Tilni tanlang", reply_markup=language_markup)
+        return None
+    data = state.get_data()
+    await users_service.create({
+        "tg_user_id": telegram_id,
+        "lang": lang,
+        "phone_number": data.phone_number
+    })
+    await state.clear()
+    await message.answer(text="Bosh menyu", reply_markup=menu_markup)
