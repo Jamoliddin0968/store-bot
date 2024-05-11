@@ -22,7 +22,7 @@ language_markup = ReplyKeyboardMarkup(
 
 menu_markup = ReplyKeyboardMarkup(
     keyboard=[
-        [KeyboardButton(text='Buyurtma berish')],
+        [KeyboardButton(text='🛒 Buyurtma berish')],
         [KeyboardButton(text="Sozlamalar"),
          KeyboardButton(text="Biz bilan bo'g'lanish")]
     ], resize_keyboard=True

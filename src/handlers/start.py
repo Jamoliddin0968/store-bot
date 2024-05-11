@@ -67,7 +67,7 @@ async def callbacks_num(message: Message, state: FSMContext):
     await users_service.create({
         "tg_user_id": telegram_id,
         "lang": lang,
-        "phone_number": data.phone_number
+        "phone_number": data.get("phone_number")
     })
     await state.clear()
     await message.answer(text="Bosh menyu", reply_markup=menu_markup)
