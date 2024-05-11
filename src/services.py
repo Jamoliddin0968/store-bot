@@ -3,7 +3,7 @@ from src.repositories import UsersRepo
 
 class UsersService:
     def __init__(self) -> None:
-        self.repo = UsersRepo
+        self.repo = UsersRepo()
 
     async def get_or_create(self, tg_user_id):
         user = await self.repo.filter_one(tg_user_id=tg_user_id)
