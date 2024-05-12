@@ -6,7 +6,7 @@ from aiogram.filters.callback_data import CallbackData
 from aiogram.fsm.context import FSMContext
 from aiogram.types import (CallbackQuery, InputMediaPhoto, KeyboardButton,
                            Message, ReplyKeyboardMarkup)
-from aiogram.types.input_file import BufferedInputFile
+from aiogram.types.input_file import BufferedInputFile, InputFile
 
 from src.repositories import CategoryRepo, ProductRepo, SubCategoryRepo
 
@@ -56,6 +56,7 @@ async def get_subcategories(callback: CallbackQuery):
     if len(subcategories) == 0:
         await callback.message.answer("Mahsulot mavjud emas", reply_markup=menu_markup)
     else:
-        lst = [InputMediaPhoto(item.image) for item in subcategories]
+        lst = [InputMediaPhoto(InputFile(item.image))
+               for item in subcategories]
         await callback.message.answer_media_group()
         await callback.message.answer(text="Mahsulotni tanlang", reply_markup=create_inline_buttons(prefix="subcategory_", data=subcategories))
