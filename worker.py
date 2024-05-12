@@ -16,7 +16,7 @@ def send_request():
 scheduler = BackgroundScheduler()
 
 # Add a job to the scheduler
-scheduler.add_job(send_request, 'interval', seconds=1)
+scheduler.add_job(send_request, 'interval', seconds=20)
 
 # Start the scheduler
 scheduler.start()
