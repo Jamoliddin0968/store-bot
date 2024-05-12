@@ -98,3 +98,4 @@ async def set_lang(callback: CallbackQuery):
         settings phone
     """
     await callback.message.answer(text="Bosh menyu", reply_markup=menu_markup)
+# f=0
