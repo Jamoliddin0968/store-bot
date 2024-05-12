@@ -5,13 +5,14 @@ from aiogram import Bot, Dispatcher, Router, types
 from aiogram.enums import ParseMode
 from aiogram.fsm.storage.memory import MemoryStorage
 from fastapi import FastAPI
+from starlette.staticfiles import StaticFiles
 
 from src import config
 from src.admin import app as admin_app
 from src.handlers import register_routes
-
 # from src.handlers.keyboards import view_button
 # from src.middlewares.config import ConfigMiddleware
+from worker import is_work
 
 router = Router()
 
