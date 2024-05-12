@@ -22,6 +22,7 @@ dp = Dispatcher()
 
 @router.message(Command("start"))
 async def start_handler(message: types.Message, state: FSMContext):
+    print(message)
     await message.answer(f"Assalomu alaykum {message.from_user.first_name}")
     description = "Assalomu alaykum ! YotiqTut onlayn magazinga xush kelibsiz.\n\n"
     description += "Привет! Добро пожаловать в интернет-журнал YatiqTut.\n\n"

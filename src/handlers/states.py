@@ -9,3 +9,7 @@ class Registration(StatesGroup):
 class OrderState(StatesGroup):
     category = State()
     subcategory = State()
+
+
+class SeetingsState(StatesGroup):
+    confirm = State()

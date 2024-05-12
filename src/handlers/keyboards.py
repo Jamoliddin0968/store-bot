@@ -1,6 +1,7 @@
 from typing import List
-from aiogram.types import (
-    KeyboardButton, ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton)
+
+from aiogram.types import (InlineKeyboardButton, InlineKeyboardMarkup,
+                           KeyboardButton, ReplyKeyboardMarkup)
 from aiogram.utils.i18n import gettext as _
 
 contact_share_markup = ReplyKeyboardMarkup(
@@ -24,17 +25,18 @@ language_markup = ReplyKeyboardMarkup(
 
 menu_markup = ReplyKeyboardMarkup(
     keyboard=[
-        [KeyboardButton(text='🛒 Buyurtma berish')],
-        [KeyboardButton(text="Sozlamalar"),
-         KeyboardButton(text="Biz bilan bo'g'lanish")]
+        [KeyboardButton(text="🛒 Buyurtma berish")],
+        [KeyboardButton(text="⚙️ Sozlamalar"),
+         KeyboardButton(text="📞 Biz bilan bo'g'lanish")]
     ], resize_keyboard=True
 )
 
-settings_markup = ReplyKeyboardMarkup(
-    keyboard=[
-        [KeyboardButton(text="Tilni o'zgartirish")],
-        [KeyboardButton(text="Telefon raqamni o'zgartirish"),
-         KeyboardButton(text="Bosh menyu")]
+settings_markup = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [InlineKeyboardButton(text="⚙️ Tilni o'zgartirish",
+                              callback_data="settings_lang")],
+        [InlineKeyboardButton(text="⚙️ Telefon raqamni o'zgartirish", callback_data="settings_phone"),
+         InlineKeyboardButton(text="🏠 Bosh menyu", callback_data="settings_home")]
     ], resize_keyboard=True
 )
 

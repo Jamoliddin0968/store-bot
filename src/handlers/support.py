@@ -15,6 +15,6 @@ router = Router()
 dp = Dispatcher()
 
 
-@router.message(F.text == "Biz bilan bo'g'lanish")
+@router.message(F.text == "📞 Biz bilan bo'g'lanish")
 async def start_handler(message: types.Message):
-    await message.answer("""Biz bilan bog'lanish\n+998902720884\n+998997600884""", reply_markup=menu_markup)
+    await message.answer("""Biz bilan bog'lanish\n📱 +998902720884\n📱 +998997600884""", reply_markup=menu_markup)
