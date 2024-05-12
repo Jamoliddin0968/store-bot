@@ -32,10 +32,10 @@ async def set_lang(callback: CallbackQuery, state: FSMContext):
         productni olish
     """
     await callback.message.answer("Tilni tanlang", reply_markup=language_markup)
-    await state.set_state(SeetingsState.confirm)
+    await state.set_state(SeetingsState.lang)
 
 
-@router.message(SeetingsState.confirm)
+@router.message(SeetingsState.lang)
 async def callbacks_num(message: Message, state: FSMContext):
     telegram_id = message.from_user.id
     lang = ""
@@ -58,12 +58,12 @@ async def callbacks_num(message: Message, state: FSMContext):
 
 
 @router.callback_query(F.data == "settings_phone")
-async def set_lang(callback: CallbackQuery, state: FSMContext):
+async def set_phone(callback: CallbackQuery, state: FSMContext):
     """
         settings phone
     """
     await callback.message.answer("Telelfon raqamingizni yuboring (12 xonali)")
-    await state.set_state(SeetingsState.confirm)
+    await state.set_state(SeetingsState.phone)
 
 
 def validate_uzbek_phone_number(phone_number):
@@ -78,18 +78,19 @@ def validate_uzbek_phone_number(phone_number):
         return False
 
 
-@router.message(SeetingsState.confirm)
+@router.message(SeetingsState.phone)
 async def callbacks_num(message: Message, state: FSMContext):
     telegram_id = message.from_user.id
     if not validate_uzbek_phone_number(message.text):
         await message.answer("Telelfon raqamingizni yuboring (12 xonali)")
-    user = await users_repo.filter_one(tg_user_id=telegram_id)
-    if user:
-        await users_repo.update(user.id, {
-            "phone_number": message.text
-        })
-    await state.clear()
-    await message.answer("""⚙️ Sozlamalar\n""", reply_markup=settings_markup)
+    else:
+        user = await users_repo.filter_one(tg_user_id=telegram_id)
+        if user:
+            await users_repo.update(user.id, {
+                "phone_number": message.text
+            })
+        await state.clear()
+        await message.answer("""⚙️ Sozlamalar\n""", reply_markup=settings_markup)
 
 
 @router.callback_query(F.data == "settings_home")

@@ -12,4 +12,5 @@ class OrderState(StatesGroup):
 
 
 class SeetingsState(StatesGroup):
-    confirm = State()
+    phone = State()
+    lang = State()
