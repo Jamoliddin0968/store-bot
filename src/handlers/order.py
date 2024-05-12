@@ -4,15 +4,16 @@ from aiogram import Dispatcher, F, Router, types
 from aiogram.filters import Command
 from aiogram.filters.callback_data import CallbackData
 from aiogram.fsm.context import FSMContext
-from aiogram.types import (CallbackQuery, KeyboardButton, Message,
-                           ReplyKeyboardMarkup)
+from aiogram.types import (CallbackQuery, InputMediaPhoto, KeyboardButton,
+                           Message, ReplyKeyboardMarkup)
 from aiogram.types.input_file import BufferedInputFile
 
-from src.repositories import CategoryRepo, SubCategoryRepo
+from src.repositories import CategoryRepo, ProductRepo, SubCategoryRepo
 
 from .keyboards import create_inline_buttons, menu_markup
 
 category_repo = CategoryRepo()
+product_repo = ProductRepo()
 router = Router()
 # router.message.filter(IsPrivateFilter())
 dp = Dispatcher()
@@ -43,3 +44,18 @@ async def get_subcategories(callback: CallbackQuery):
         await callback.message.answer("SubCategoriyalar mavjud emas", reply_markup=menu_markup)
     else:
         await callback.message.answer(text="Categoriyani tanlang", reply_markup=create_inline_buttons(prefix="subcategory_", data=subcategories))
+
+
+@router.callback_query(F.data.startswith("subcategory_"))
+async def get_subcategories(callback: CallbackQuery):
+    """
+        productni olish
+    """
+    subcategory_id = callback.data.split("subcategory_")[-1]
+    subcategories = await product_repo.filter(subcategory_id=subcategory_id)
+    if len(subcategories) == 0:
+        await callback.message.answer("Mahsulot mavjud emas", reply_markup=menu_markup)
+    else:
+        lst = [InputMediaPhoto(item.image) for item in subcategories]
+        await callback.message.answer_media_group()
+        await callback.message.answer(text="Mahsulotni tanlang", reply_markup=create_inline_buttons(prefix="subcategory_", data=subcategories))

@@ -3,7 +3,7 @@ from typing import Dict
 from pydantic import BaseModel
 
 from src.database import get_db
-from src.models import Category, SubCategory, Users
+from src.models import Category, Products, SubCategory, Users
 
 
 class CRUDRepository:
@@ -73,3 +73,7 @@ class CategoryRepo(CRUDRepository):
 
 class SubCategoryRepo(CRUDRepository):
     model = SubCategory
+
+
+class ProductRepo(CRUDRepository):
+    model = Products

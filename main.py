@@ -31,7 +31,7 @@ dp = Dispatcher(storage=storage)
 async def lifespan(app: FastAPI):
     await bot.delete_webhook()
     await bot.set_webhook(url=WEBHOOK_URL)
-    # await bot.send_message(5290603408, "tg://openmessage?user_id=6501389506", parse_mode=ParseMode.MARKDOWN)
+    await bot.send_message(468329312, "ishga tushdi brat")
     yield
     await bot.delete_webhook()
 
