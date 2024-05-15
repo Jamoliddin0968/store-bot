@@ -34,9 +34,9 @@ menu_markup = ReplyKeyboardMarkup(
 settings_markup = InlineKeyboardMarkup(
     inline_keyboard=[
         [InlineKeyboardButton(text="⚙️ Tilni o'zgartirish",
-                              callback_data="settings_lang")],
-        [InlineKeyboardButton(text="⚙️ Telefon raqamni o'zgartirish", callback_data="settings_phone"),
-         InlineKeyboardButton(text="🏠 Bosh menyu", callback_data="settings_home")]
+                              callback_data="settings_lang"), InlineKeyboardButton(text="⚙️ Telefon raqamni o'zgartirish", callback_data="settings_phone"),],
+        [
+            InlineKeyboardButton(text="🏠 Bosh menyu", callback_data="settings_home")]
     ], resize_keyboard=True
 )
 
