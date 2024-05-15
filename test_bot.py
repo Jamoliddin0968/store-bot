@@ -6,7 +6,7 @@ from contextlib import asynccontextmanager
 from aiogram import Bot, Dispatcher, Router, types
 from aiogram.enums import ParseMode
 from aiogram.fsm.storage.memory import MemoryStorage
-from aiogram.types import BotCommand
+from aiogram.types import BotCommand, BotCommandScopeDefault
 from fastapi import FastAPI
 from starlette.staticfiles import StaticFiles
 
@@ -37,8 +37,9 @@ register_routes(dp)
 
 async def main():
     await bot.set_my_commands(
-        [BotCommand("start", "ishga tushirish"),]
+        [BotCommand(command="start", description="ishga tushirish"),] BotCommandScopeDefault()
     )
+    dp.bot
     await bot.delete_webhook()
     await dp.start_polling(bot)
 
