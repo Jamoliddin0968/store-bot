@@ -41,7 +41,6 @@ async def main():
         [BotCommand(command="start", description="ishga tushirish"),
          ], BotCommandScopeDefault()
     )
-    dp.bot
     await bot.delete_webhook()
     await dp.start_polling(bot)
 
