@@ -12,3 +12,6 @@ class SubCategory(BaseModel):
         'category.id', ondelete="CASCADE"), nullable=False)
 
     category = relationship("Category")
+
+    def __str__(self):
+        return f"{self.name}"

@@ -1,19 +1,21 @@
 """empty message
 
-Revision ID: dc477e9df9ba
-Revises: 3cd8dc3c9b74
-Create Date: 2024-05-11 19:02:09.658720
+Revision ID: 42966e76a3d5
+Revises: b64e2e67f3ea
+Create Date: 2024-05-15 12:45:03.527701
 
 """
 from typing import Sequence, Union
 
 from alembic import op
 import sqlalchemy as sa
+import sqlalchemy_file
+import fastapi_storages
 
 
 # revision identifiers, used by Alembic.
-revision: str = 'dc477e9df9ba'
-down_revision: Union[str, None] = '3cd8dc3c9b74'
+revision: str = '42966e76a3d5'
+down_revision: Union[str, None] = 'b64e2e67f3ea'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 

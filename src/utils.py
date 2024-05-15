@@ -14,7 +14,7 @@ def _generate_uuid():
     return str(uuid.uuid4())
 
 
-def save_image(file: UploadFile, folder="") -> str:
+def save_image(file, folder="") -> str:
     print(file)
     file_name = f"{_generate_uuid()}.{_get_file_extension(file.filename)}"
     directory = os.path.join("uploads", folder)
