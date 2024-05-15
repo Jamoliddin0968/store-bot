@@ -35,10 +35,11 @@ async def start_handler(message: types.Message, state: FSMContext):
         await message.answer(
             f"Iltimos telefon raqamingizni yuboring !", reply_markup=contact_share_markup
         )
+        await state.clear()
         await state.set_state(Registration.phone_number)
 
 
-@router.message(Registration.phone_number, F.contact)
+@router.message(Registration.phone_number)
 async def get_contact(message: Message, state: FSMContext):
     phone_number = message.contact.phone_number
     if phone_number[0] == "+":
