@@ -47,7 +47,7 @@ async def get_contact(message: Message, state: FSMContext):
     else:
         phone_number = f"+{phone_number}"
     await state.set_state(Registration.language)
-    await state.set_data(phone_number=phone_number)
+    await state.update_data(phone_number=phone_number)
     await message.answer("Tilni tanlang", reply_markup=language_markup)
 
 
