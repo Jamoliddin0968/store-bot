@@ -96,6 +96,6 @@ async def select_state(message: Message,  state: FSMContext):
     data = await state.get_data()
     size = message.text
     product = await product_repo.get(data['product_id'])
-    await message.external_reply("Buyurtma qabul qilindi", reply_markup=menu_markup)
+    await message.answer("Buyurtma qabul qilindi", reply_markup=menu_markup)
     await message.bot.send_message(chat_id=GROUP_ID, text=f"{product.name}")
     await state.clear()
