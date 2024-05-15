@@ -71,7 +71,7 @@ async def get_subcategories(callback: CallbackQuery):
     """
     product_id = callback.data.split("product_")[-1]
     product = await product_repo.filter_one(id=product_id)
-    if product:
+    if not product:
         await callback.message.answer("Mahsulot mavjud emas", reply_markup=menu_markup)
     elif product.types:
         await callback.message.answer("Tanlang", reply_markup=create_product_buttons(prefix="item_", data=product.types))

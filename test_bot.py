@@ -36,11 +36,11 @@ register_routes(dp)
 
 
 async def main():
-    await bot.delete_webhook()
-    await dp.start_polling(bot)
     await bot.set_my_commands(
         [BotCommand("start"),]
     )
+    await bot.delete_webhook()
+    await dp.start_polling(bot)
 
 
 if __name__ == "__main__":
