@@ -13,4 +13,6 @@ async def get_():
 app.mount("/", admin_app)
 if __name__ == "__main__":
 
-    subcategories = asyncio.run(get_)
+    subcategories = get_()
+    for it in subcategories:
+        print(it.image)
