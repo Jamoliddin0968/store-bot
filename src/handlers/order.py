@@ -1,6 +1,6 @@
 import io
 
-from aiogram import Dispatcher, F, Router, types
+from aiogram import Bot, Dispatcher, F, Router, types
 from aiogram.filters import Command
 from aiogram.filters.callback_data import CallbackData
 from aiogram.fsm.context import FSMContext
@@ -11,7 +11,6 @@ from aiogram.types.input_media_photo import InputMediaPhoto
 from src.config import GROUP_ID
 from src.handlers.states import OrderState
 from src.repositories import CategoryRepo, ProductRepo, SubCategoryRepo
-from test_bot import bot
 
 from .keyboards import (create_inline_buttons, create_product_buttons,
                         menu_markup)
@@ -93,10 +92,10 @@ async def select_state(message: Message, state: FSMContext):
 
 
 @router.message(OrderState.size)
-async def select_state(message: Message, state: FSMContext):
+async def select_state(message: Message, bot: Bot, state: FSMContext):
     data = await state.get_data()
     size = message.text
     product = await product_repo.get(id=data.product_id)
-    await message.answer("Buyurtma qabul qilindi", reply_markup=menu_markup)
+    await message.external_reply("Buyurtma qabul qilindi", reply_markup=menu_markup)
     await bot.send_message(chat_id=GROUP_ID, text=f"{product.name}")
     await state.clear()
