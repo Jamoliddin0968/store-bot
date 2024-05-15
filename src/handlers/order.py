@@ -4,7 +4,7 @@ from aiogram import Bot, Dispatcher, F, Router, types
 from aiogram.filters import Command
 from aiogram.filters.callback_data import CallbackData
 from aiogram.fsm.context import FSMContext
-from aiogram.types import CallbackQuery, Message
+from aiogram.types import CallbackQuery, FSInputFile, Message
 from aiogram.types.input_file import BufferedInputFile, FSInputFile
 from aiogram.types.input_media_photo import InputMediaPhoto
 
@@ -97,5 +97,6 @@ async def select_state(message: Message,  state: FSMContext):
     size = message.text
     product = await product_repo.get(data['product_id'])
     await message.answer("Buyurtma qabul qilindi", reply_markup=menu_markup)
-    await message.bot.send_message(chat_id=GROUP_ID, text=f"{product.name}")
+    new_img = FSInputFile(product.image)
+    await message.bot.send_photo(chat_id=GROUP_ID, photo=new_img, caption=f"Buyurtma qoldirildi {product.name}")
     await state.clear()
