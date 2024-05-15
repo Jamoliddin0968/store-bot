@@ -25,7 +25,7 @@ class Products(BaseModel):
     tg_message_id = Column(String(25), nullable=True)
     subcategory = relationship("SubCategory")
     types = relationship(
-        "Type", secondary=product_type_association, back_populates="products")
+        "Type", secondary=product_type_association, back_populates="products", lazy="selectin")
 
     def __str__(self):
         return self.name

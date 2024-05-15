@@ -11,7 +11,8 @@ from aiogram.types.input_media_photo import InputMediaPhoto
 
 from src.repositories import CategoryRepo, ProductRepo, SubCategoryRepo
 
-from .keyboards import create_inline_buttons, menu_markup
+from .keyboards import (create_inline_buttons, create_product_buttons,
+                        menu_markup)
 
 category_repo = CategoryRepo()
 product_repo = ProductRepo()
@@ -63,17 +64,16 @@ async def get_subcategories(callback: CallbackQuery):
         await callback.message.answer(text="Mahsulotni tanlang", reply_markup=create_inline_buttons(prefix="product_", data=subcategories))
 
 
-@router.callback_query(F.data.startswith("subcategory_"))
+@router.callback_query(F.data.startswith("product_"))
 async def get_subcategories(callback: CallbackQuery):
     """
         productni olish
     """
-    subcategory_id = callback.data.split("subcategory_")[-1]
-    subcategories = await product_repo.filter(subcategory_id=subcategory_id)
-    if len(subcategories) == 0:
+    product_id = callback.data.split("product_")[-1]
+    product = await product_repo.filter_one(id=product_id)
+    if product:
         await callback.message.answer("Mahsulot mavjud emas", reply_markup=menu_markup)
+    elif product.types:
+        await callback.message.answer("Tanlang", reply_markup=create_product_buttons(prefix="item_", data=product.types))
     else:
-        lst = [InputMediaPhoto(media=FSInputFile(item.image))
-               for item in subcategories]
-        await callback.message.answer_media_group(media=lst)
-        await callback.message.answer(text="Mahsulotni tanlang", reply_markup=create_inline_buttons(prefix="product_", data=subcategories))
+        await callback.message.answer(text="Mahsulotni tanlang")
