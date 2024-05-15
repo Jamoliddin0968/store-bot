@@ -13,9 +13,10 @@ from starlette.staticfiles import StaticFiles
 from src import config
 from src.admin import app as admin_app
 from src.handlers import register_routes
+
 # from src.handlers.keyboards import view_button
 # from src.middlewares.config import ConfigMiddleware
-from worker import is_work
+# from worker import is_work
 
 router = Router()
 
@@ -37,7 +38,8 @@ register_routes(dp)
 
 async def main():
     await bot.set_my_commands(
-        [BotCommand(command="start", description="ishga tushirish"),] BotCommandScopeDefault()
+        [BotCommand(command="start", description="ishga tushirish"),
+         ], BotCommandScopeDefault()
     )
     dp.bot
     await bot.delete_webhook()
