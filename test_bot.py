@@ -37,7 +37,7 @@ register_routes(dp)
 
 async def main():
     await bot.set_my_commands(
-        [BotCommand("start"),]
+        [BotCommand("start", "ishga tushirish"),]
     )
     await bot.delete_webhook()
     await dp.start_polling(bot)
