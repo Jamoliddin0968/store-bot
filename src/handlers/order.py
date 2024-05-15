@@ -4,12 +4,14 @@ from aiogram import Dispatcher, F, Router, types
 from aiogram.filters import Command
 from aiogram.filters.callback_data import CallbackData
 from aiogram.fsm.context import FSMContext
-from aiogram.types import (CallbackQuery, KeyboardButton, Message,
-                           ReplyKeyboardMarkup)
+from aiogram.types import CallbackQuery, Message
 from aiogram.types.input_file import BufferedInputFile, FSInputFile
 from aiogram.types.input_media_photo import InputMediaPhoto
 
+from src.config import GROUP_ID
+from src.handlers.states import OrderState
 from src.repositories import CategoryRepo, ProductRepo, SubCategoryRepo
+from test_bot import bot
 
 from .keyboards import (create_inline_buttons, create_product_buttons,
                         menu_markup)
@@ -65,7 +67,7 @@ async def get_subcategories(callback: CallbackQuery):
 
 
 @router.callback_query(F.data.startswith("product_"))
-async def get_subcategories(callback: CallbackQuery):
+async def get_subcategories(callback: CallbackQuery, state: FSMContext):
     """
         productni olish
     """
@@ -74,6 +76,27 @@ async def get_subcategories(callback: CallbackQuery):
     if not product:
         await callback.message.answer("Mahsulot mavjud emas", reply_markup=menu_markup)
     elif product.types:
+        await state.update_data(product_id=product.id)
         await callback.message.answer("Tanlang", reply_markup=create_product_buttons(prefix="item_", data=product.types))
+        await state.set_state(OrderState.type)
     else:
-        await callback.message.answer(text="Mahsulotni tanlang")
+        await state.update_data(product_id=product.id)
+        await callback.message.answer(text="Mahsulot o'lchamini kiriting:")
+        await state.set_state(OrderState.size)
+
+
+@router.message(OrderState.type)
+async def select_state(message: Message, state: FSMContext):
+    await state.update_data(type=message.text)
+    await message.answer(text="Mahsulot o'lchamini kiriting:")
+    await state.set_state(OrderState.size)
+
+
+@router.message(OrderState.size)
+async def select_state(message: Message, state: FSMContext):
+    data = await state.get_data()
+    size = message.text
+    product = await product_repo.get(id=data.product_id)
+    await message.answer("Buyurtma qabul qilindi", reply_markup=menu_markup)
+    await bot.send_message(chat_id=GROUP_ID, text=f"{product.name}")
+    await state.clear()

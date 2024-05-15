@@ -7,8 +7,9 @@ class Registration(StatesGroup):
 
 
 class OrderState(StatesGroup):
-    category = State()
-    subcategory = State()
+    product_id = State()
+    type = State()
+    size = State()
 
 
 class SeetingsState(StatesGroup):
