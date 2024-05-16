@@ -48,7 +48,16 @@ async def get_subcategories(callback: CallbackQuery):
     if len(subcategories) == 0:
         await callback.message.answer("SubCategoriyalar mavjud emas", reply_markup=menu_markup)
     else:
-        await callback.message.answer(text="Categoriyani tanlang", reply_markup=create_inline_buttons(prefix="subcategory_", data=subcategories))
+        await callback.message.answer(text="Categoriyani tanlang", reply_markup=create_inline_buttons(prefix="subcategory_", data=subcategories, return_prefix="home_page_order"))
+
+
+@router.callback_query(F.data == "home_page_order")
+async def get_subcategories(callback: CallbackQuery):
+    """
+        catogirydan orqaga
+    """
+    await callback.message.delete()
+    await callback.message.answer("Bosh menyu", reply_markup=menu_markup)
 
 
 @router.callback_query(F.data.startswith("subcategory_"))
