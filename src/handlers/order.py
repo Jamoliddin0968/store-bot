@@ -101,12 +101,12 @@ async def select_state(message: Message,  state: FSMContext):
     await message.answer("Buyurtma qabul qilindi", reply_markup=menu_markup)
     new_img = FSInputFile(product.image)
     description = f"Buyurtma qoldirildi\n"
-    description += f"Nomi: {product.name}"
+    description += f"Nomi: {product.name}\n"
     if "type" in data:
-        description += f"Turi: {data['type']}"
-    description += f"O'lchami: {size}"
+        description += f"Turi: {data['type']}\n"
+    description += f"O'lchami: {size}\n"
     user = await user_repo.filter_one(tg_user_id=message.from_user.id)
-    description += f"Mijoz: {message.from_user.first_name}"
-    description += f"Mijoz raqami: {user.phone_number}"
+    description += f"Mijoz: {message.from_user.first_name}\n"
+    description += f"Mijoz raqami: {user.phone_number}\n"
     await message.bot.send_photo(chat_id=GROUP_ID, photo=new_img, caption=description)
     await state.clear()

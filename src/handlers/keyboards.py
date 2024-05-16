@@ -55,5 +55,5 @@ def create_product_buttons(prefix: str, data: List):
         keyboard=[
             [KeyboardButton(text=item.name, callback_data=f"{prefix}{item.id}")
                 for item in data[i:i+2]] for i in range(0, len(data), 2)
-        ]
+        ], resize_keyboard=True
     )
