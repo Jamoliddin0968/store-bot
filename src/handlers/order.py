@@ -45,7 +45,7 @@ async def get_subcategories(callback: CallbackQuery):
     if len(subcategories) == 0:
         await callback.message.answer("SubCategoriyalar mavjud emas", reply_markup=menu_markup)
     else:
-        await callback.message.edit_text(text="Categoriyani tanlang", reply_markup=create_inline_buttons(prefix="subcategory_", data=subcategories, return_prefix=f"category_{category_id}"))
+        await callback.message.edit_text(text="Categoriyani tanlang", reply_markup=create_inline_buttons(prefix="subcategory_", data=subcategories, return_prefix=f"return_to_order"))
 
 
 @router.callback_query(F.data == "home_page_order")
@@ -55,6 +55,17 @@ async def get_subcategories(callback: CallbackQuery):
     """
     await callback.message.delete()
     await callback.message.answer("Bosh menyu", reply_markup=menu_markup)
+    # callback.message.
+
+
+@router.callback_query(F.data == "return_to_order")
+async def get_subcategories(callback: CallbackQuery):
+    """
+        catogirydan orqaga
+    """
+    categories = await category_repo.get_all()
+    await callback.message.edit_text(text="Categoriyani tanlang", reply_markup=create_inline_buttons(prefix="category_", data=categories, return_prefix="home_page_order"))
+
     # callback.message.
 
 
@@ -69,10 +80,11 @@ async def get_subcategories(callback: CallbackQuery):
         await callback.message.answer("Mahsulot mavjud emas", reply_markup=menu_markup)
     else:
         category_id = subcategories[0].subcategory_id
+        category_id = await sub_category_repo.get(category_id).category_id
         lst = [InputMediaPhoto(media=FSInputFile(item.image))
                for item in subcategories]
         await callback.message.answer_media_group(media=lst)
-        await callback.message.answer(text="Mahsulotni tanlang", reply_markup=create_inline_buttons(prefix="product_", data=subcategories, return_prefix=f"subcategory_{subcategory_id}"))
+        await callback.message.answer(text="Mahsulotni tanlang", reply_markup=create_inline_buttons(prefix="product_", data=subcategories, return_prefix=f"category_{subcategory_id}"))
         await callback.message.delete()
 
 
