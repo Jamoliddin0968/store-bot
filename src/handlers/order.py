@@ -33,7 +33,7 @@ async def start_handler(message: types.Message):
     if len(categories) == 0:
         await message.answer("Categoriyalar mavjud emas", reply_markup=menu_markup)
     else:
-        await message.answer(text="Categoriyani tanlang", reply_markup=create_inline_buttons(prefix="category_", data=categories))
+        await message.answer(text="Categoriyani tanlang", reply_markup=create_inline_buttons(prefix="category_", data=categories, return_prefix="home_page_order"))
 
 sub_category_repo = SubCategoryRepo()
 
@@ -48,7 +48,7 @@ async def get_subcategories(callback: CallbackQuery):
     if len(subcategories) == 0:
         await callback.message.answer("SubCategoriyalar mavjud emas", reply_markup=menu_markup)
     else:
-        await callback.message.answer(text="Categoriyani tanlang", reply_markup=create_inline_buttons(prefix="subcategory_", data=subcategories, return_prefix="home_page_order"))
+        await callback.message.edit_text(text="Categoriyani tanlang", reply_markup=create_inline_buttons(prefix="subcategory_", data=subcategories, return_prefix=f"category_{category_id}"))
 
 
 @router.callback_query(F.data == "home_page_order")
@@ -70,10 +70,11 @@ async def get_subcategories(callback: CallbackQuery):
     if len(subcategories) == 0:
         await callback.message.answer("Mahsulot mavjud emas", reply_markup=menu_markup)
     else:
+        category_id = subcategories[0].category_id
         lst = [InputMediaPhoto(media=FSInputFile(item.image))
                for item in subcategories]
         await callback.message.answer_media_group(media=lst)
-        await callback.message.answer(text="Mahsulotni tanlang", reply_markup=create_inline_buttons(prefix="product_", data=subcategories))
+        await callback.message.answer(text="Mahsulotni tanlang", reply_markup=create_inline_buttons(prefix="product_", data=subcategories, return_prefix="category_"))
 
 
 @router.callback_query(F.data.startswith("product_"))
