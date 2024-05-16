@@ -10,11 +10,13 @@ from aiogram.types.input_media_photo import InputMediaPhoto
 
 from src.config import GROUP_ID
 from src.handlers.states import OrderState
-from src.repositories import CategoryRepo, ProductRepo, SubCategoryRepo
+from src.repositories import (CategoryRepo, ProductRepo, SubCategoryRepo,
+                              UsersRepo)
 
 from .keyboards import (create_inline_buttons, create_product_buttons,
                         menu_markup)
 
+user_repo = UsersRepo()
 category_repo = CategoryRepo()
 product_repo = ProductRepo()
 router = Router()
@@ -98,5 +100,13 @@ async def select_state(message: Message,  state: FSMContext):
     product = await product_repo.get(data['product_id'])
     await message.answer("Buyurtma qabul qilindi", reply_markup=menu_markup)
     new_img = FSInputFile(product.image)
-    await message.bot.send_photo(chat_id=GROUP_ID, photo=new_img, caption=f"Buyurtma qoldirildi {product.name}")
+    description = f"Buyurtma qoldirildi\n"
+    description += f"Nomi: {product.name}"
+    if "type" in data:
+        description += f"Turi: {data['type']}"
+    description += f"O'lchami: {size}"
+    user = await user_repo.filter_one(tg_user_id=message.from_user.id)
+    description += f"Mijoz: {message.from_user.first_name}"
+    description += f"Mijoz raqami: {user.phone_number}"
+    await message.bot.send_photo(chat_id=GROUP_ID, photo=new_img, caption=description)
     await state.clear()
