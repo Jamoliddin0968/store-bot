@@ -81,7 +81,7 @@ async def get_subcategories(callback: CallbackQuery):
     else:
         category_id = subcategories[0].subcategory_id
         category = await sub_category_repo.get(category_id)
-        category_id = category[0].category_id
+        category_id = category.category_id
         lst = [InputMediaPhoto(media=FSInputFile(item.image))
                for item in subcategories]
         await callback.message.answer_media_group(media=lst)
