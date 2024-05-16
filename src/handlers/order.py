@@ -1,11 +1,8 @@
-import io
 
 from aiogram import Bot, Dispatcher, F, Router, types
-from aiogram.filters import Command
-from aiogram.filters.callback_data import CallbackData
 from aiogram.fsm.context import FSMContext
 from aiogram.types import CallbackQuery, FSInputFile, Message
-from aiogram.types.input_file import BufferedInputFile, FSInputFile
+from aiogram.types.input_file import FSInputFile
 from aiogram.types.input_media_photo import InputMediaPhoto
 
 from src.config import GROUP_ID

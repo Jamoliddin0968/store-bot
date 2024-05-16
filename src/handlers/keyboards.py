@@ -44,7 +44,7 @@ settings_markup = InlineKeyboardMarkup(
 def create_inline_buttons(prefix: str, data: List, return_prefix=""):
     buttons = [[InlineKeyboardButton(text=item.name, callback_data=f"{prefix}{item.id}")
                 for item in data[i:i+2]] for i in range(0, len(data), 2)]
-    buttons.append([InlineKeyboardButton(text="🔙 Orqaga", callback_data=return_prefix)
+    buttons.append([InlineKeyboardButton(text="🔙 Orqaga", callback_data=return_prefix),
                     ])
     return InlineKeyboardMarkup(
         inline_keyboard=buttons, resize_keyboard=True
