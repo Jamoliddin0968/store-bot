@@ -71,7 +71,7 @@ async def get_subcategories(callback: CallbackQuery):
         category_id = subcategories[0].subcategory_id
         lst = [InputMediaPhoto(media=FSInputFile(item.image))
                for item in subcategories]
-        await callback.message.answer_media_group(photo=FSInputFile(subcategories[0].image))
+        await callback.message.answer_media_group(media=lst)
         await callback.message.answer(text="Mahsulotni tanlang", reply_markup=create_inline_buttons(prefix="product_", data=subcategories, return_prefix=f"subcategory_{subcategory_id}"))
         await callback.message.delete()
 
