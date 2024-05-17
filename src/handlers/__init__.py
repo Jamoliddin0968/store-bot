@@ -8,8 +8,8 @@ from .support import router as support_router
 
 
 def register_routes(dp: Dispatcher):
+    dp.include_router(support_router)
+    dp.include_router(settings_router)
     dp.include_router(home_router)
     dp.include_router(start_routes)
     dp.include_router(order_routes)
-    dp.include_router(support_router)
-    dp.include_router(settings_router)
