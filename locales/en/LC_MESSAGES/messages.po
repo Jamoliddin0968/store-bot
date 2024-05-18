@@ -45,3 +45,4 @@ msgstr "Select a product"
 #: src/handlers/order.py:126
 msgid "Buyurtma qabul qilindi"
 msgstr "Order accepted"
+
