@@ -1,7 +1,12 @@
 
+import uuid
+from io import BytesIO
+from typing import Coroutine
+
 from sqladmin import Admin, ModelView
 from sqladmin.authentication import AuthenticationBackend
 from starlette.applications import Starlette
+from starlette.datastructures import UploadFile
 from starlette.requests import Request
 from wtforms import FileField, Form, StringField, validators
 
@@ -39,12 +44,26 @@ app = Starlette()
 
 
 # authentication_backend = AdminAuth(secret_key="...")
+
+
 admin = Admin(app=app, engine=engine)
 
 
 class ProductAdmin(ModelView, model=Products):
     column_list = ["name",]
-    #
+
+    def on_model_change(self, data: dict, model, is_created: bool, request: Request):
+        image: UploadFile = data.get('image')
+        if image:
+            filename = "tmp"+"/"+str(uuid.uuid4())+"." + \
+                image.filename.split('.')[-1]
+            saved_image = UploadFile(
+                image.file,  filename=filename)
+            with open(filename, "wb") as f:
+                f.write(image.file.read())
+            image.file.seek(0)
+            data['image'] = saved_image
+        return super().on_model_change(data, model, is_created, request)
 
 
 class TypeAdmin(ModelView, model=Type):

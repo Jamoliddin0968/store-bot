@@ -67,11 +67,10 @@ async def set_phone(callback: CallbackQuery, state: FSMContext):
 
 
 def validate_uzbek_phone_number(phone_number: str):
-    if len(phone_number) > 13:
-        return False
     cleaned_number = ''.join(filter(str.isdigit, phone_number))
     if not cleaned_number.startswith('998'):
         return False
+    cleaned_number = cleaned_number[3:]
     valid_prefixes = ["90", "91", "93", "94",
                       "95", "97", "98", "99", "88", "33", "55"]
     if cleaned_number.startswith(tuple(valid_prefixes)) and len(cleaned_number) == 9:
@@ -84,7 +83,7 @@ def validate_uzbek_phone_number(phone_number: str):
 async def callbacks_num(message: Message, state: FSMContext):
     telegram_id = message.from_user.id
     if not validate_uzbek_phone_number(message.text):
-        await message.answer("Telelfon raqamingizni yuboring (12 xonali)")
+        await message.answer("Telelfon raqamingizni yuboring (12 xonali)\n+998 XX XXX XX XX")
     else:
         user = await users_repo.filter_one(tg_user_id=telegram_id)
         if user:

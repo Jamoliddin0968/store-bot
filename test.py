@@ -11,8 +11,3 @@ app = FastAPI()
 async def get_():
     return await ProductRepo().get_all()
 app.mount("/", admin_app)
-if __name__ == "__main__":
-
-    subcategories = get_()
-    for it in subcategories:
-        print(it.image)

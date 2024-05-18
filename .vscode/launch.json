@@ -7,7 +7,7 @@
             "request": "launch",
             "module": "uvicorn",
             "args": [
-                "main:app",
+                "test:app",
                 "--reload"
             ],
             "env": {

@@ -1,5 +1,10 @@
-from fastapi_storages import FileSystemStorage
+import uuid
+from typing import BinaryIO
+
+from fastapi_storages import FileSystemStorage, StorageImage
+from fastapi_storages.exceptions import ValidationException
 from fastapi_storages.integrations.sqlalchemy import ImageType
+from PIL import Image, UnidentifiedImageError
 from sqlalchemy import Column, ForeignKey, Integer, String, Table
 from sqlalchemy.orm import relationship
 
@@ -19,8 +24,7 @@ class Products(BaseModel):
     subcategory_id = Column(Integer, ForeignKey(
         "subcategory.id", ondelete="CASCADE"), nullable=False)
     name = Column(String(255))
-    image = Column(ImageType(
-        storage=FileSystemStorage(path="tmp")), nullable=True)
+    image = Column(ImageType(storage=FileSystemStorage('tmp')))
 
     tg_message_id = Column(String(25), nullable=True)
     subcategory = relationship("SubCategory")
