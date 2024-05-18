@@ -5,7 +5,7 @@ from aiogram import Bot, Dispatcher, Router
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import BotCommand, BotCommandScopeDefault
 from aiogram.utils.i18n import ConstI18nMiddleware, I18n, middleware
-from aiogram.utils.i18n.middleware import SimpleI18nMiddleware
+from aiogram.utils.i18n.middleware import ConstI18nMiddleware
 
 from src import config
 from src.handlers import register_routes
@@ -35,7 +35,7 @@ async def main():
          ], BotCommandScopeDefault()
     )
     await bot.delete_webhook()
-    dp.message.outer_middleware(SimpleI18nMiddleware(locale='en', i18n=i18n))
+    dp.message.outer_middleware(ConstI18nMiddleware(locale='en', i18n=i18n))
     await dp.start_polling(bot)
 
 
