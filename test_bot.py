@@ -25,8 +25,6 @@ dp = Dispatcher(storage=storage)
 # dp.update.middleware(ConfigMiddleware(config))
 i18n = I18n(path="locales", default_locale="en", domain="messages")
 dp.message.middleware(ConstI18nMiddleware(locale='en', i18n=i18n))
-# Register routes
-register_routes(dp)
 
 
 async def main():
@@ -35,7 +33,7 @@ async def main():
          ], BotCommandScopeDefault()
     )
     await bot.delete_webhook()
-
+    register_routes(dp)
     await dp.start_polling(bot)
 
 
