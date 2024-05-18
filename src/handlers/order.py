@@ -1,5 +1,5 @@
 
-from aiogram import Bot, Dispatcher, F, Router, types
+from aiogram import Dispatcher, F, Router, types
 from aiogram.fsm.context import FSMContext
 from aiogram.types import CallbackQuery, FSInputFile, Message
 from aiogram.types.input_file import FSInputFile
@@ -104,7 +104,7 @@ async def get_subcategories(callback: CallbackQuery, state: FSMContext):
         await state.set_state(OrderState.type)
     else:
         await state.update_data(product_id=product.id)
-        await callback.message.answer(text="Mahsulot o'lchamini kiriting:")
+        await callback.message.answer(text="Mahsulot o'lchamini kiriting:", reply_markup=None)
         await state.set_state(OrderState.size)
 
 
