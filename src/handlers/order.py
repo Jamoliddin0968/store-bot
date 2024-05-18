@@ -129,6 +129,7 @@ async def select_state(message: Message,  state: FSMContext):
     description += f"O'lchami: {size}\n"
     user = await user_repo.filter_one(tg_user_id=message.from_user.id)
     description += f"Mijoz: {message.from_user.first_name}\n"
-    description += f"Mijoz raqami: {user.phone_number}\n"
+    if user:
+        description += f"Mijoz raqami: {user.phone_number}\n"
     await message.bot.send_photo(chat_id=GROUP_ID, photo=new_img, caption=description)
     await state.clear()
