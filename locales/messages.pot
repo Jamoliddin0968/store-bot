@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-18 19:15+0500\n"
+"POT-Creation-Date: 2024-05-18 19:43+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,18 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.13.1\n"
+
+#: src/handlers/keyboards.py:28
+msgid "🛒 Buyurtma berish"
+msgstr ""
+
+#: src/handlers/keyboards.py:29
+msgid "⚙️ Sozlamalar"
+msgstr ""
+
+#: src/handlers/keyboards.py:30
+msgid "📞 Biz bilan bo'g'lanish"
+msgstr ""
 
 #: src/handlers/order.py:34
 msgid "Categoriyalar mavjud emas"

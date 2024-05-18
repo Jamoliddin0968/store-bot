@@ -25,9 +25,9 @@ language_markup = ReplyKeyboardMarkup(
 
 menu_markup = ReplyKeyboardMarkup(
     keyboard=[
-        [KeyboardButton(text="🛒 Buyurtma berish")],
-        [KeyboardButton(text="⚙️ Sozlamalar"),
-         KeyboardButton(text="📞 Biz bilan bo'g'lanish")]
+        [KeyboardButton(text=_("🛒 Buyurtma berish"))],
+        [KeyboardButton(text=_("⚙️ Sozlamalar")),
+         KeyboardButton(text=_("📞 Biz bilan bo'g'lanish"))]
     ], resize_keyboard=True, one_time_keyboard=True
 )
 
