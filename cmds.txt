@@ -1,2 +1,9 @@
 alembic revision --autogenerate 
 alembic upgrade head
+--ignore-dirs
+pybabel extract --input-dirs=. -o locales/messages.pot --ignore-dirs env
+
+pybabel init -i locales/messages.pot -d locales -D messages -l en
+pybabel compile -d locales -D messages
+
+pybabel update -d locales -D messages -i locales/messages.pot --ignore-dirs env

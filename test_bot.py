@@ -1,25 +1,14 @@
 import asyncio
-# import json
 import logging
 
 from aiogram import Bot, Dispatcher, Router
-# from aiogram.enums import ParseMode
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import BotCommand, BotCommandScopeDefault
+from aiogram.utils.i18n import I18n, middleware
+from aiogram.utils.i18n.middleware import SimpleI18nMiddleware
 
 from src import config
-# from src.admin import app as admin_app
 from src.handlers import register_routes
-
-# from contextlib import asynccontextmanager
-
-# from fastapi import FastAPI
-# from starlette.staticfiles import StaticFiles
-
-
-# from src.handlers.keyboards import view_button
-# from src.middlewares.config import ConfigMiddleware
-# from worker import is_work
 
 router = Router()
 
@@ -34,7 +23,8 @@ dp = Dispatcher(storage=storage)
 
 # Register middlewares
 # dp.update.middleware(ConfigMiddleware(config))
-
+i18n = I18n(path="locales", default_locale="en", domain="messages")
+dp.update.middleware(i18n)
 # Register routes
 register_routes(dp)
 

@@ -5,6 +5,8 @@ from aiogram.types import (CallbackQuery, FSInputFile, Message,
                            ReplyKeyboardRemove)
 from aiogram.types.input_file import FSInputFile
 from aiogram.types.input_media_photo import InputMediaPhoto
+from aiogram.utils.i18n import gettext as _
+from aiogram.utils.i18n import lazy_gettext as __
 
 from src.config import GROUP_ID
 from src.handlers.states import OrderState
@@ -22,16 +24,16 @@ router = Router()
 dp = Dispatcher()
 
 
-@router.message(F.text == "🛒 Buyurtma berish")
+@router.message(F.text == __("🛒 Buyurtma berish"))
 async def start_handler(message: types.Message):
     """
         Buyurtma berish
     """
     categories = await category_repo.get_all()
     if len(categories) == 0:
-        await message.answer("Categoriyalar mavjud emas", reply_markup=menu_markup)
+        await message.answer(_("Categoriyalar mavjud emas"), reply_markup=menu_markup)
     else:
-        await message.answer(text="Categoriyani tanlang", reply_markup=create_inline_buttons(prefix="category_", data=categories, return_prefix="home_page_order"))
+        await message.answer(text=_("Categoriyani tanlang"), reply_markup=create_inline_buttons(prefix="category_", data=categories, return_prefix="home_page_order"))
 
 sub_category_repo = SubCategoryRepo()
 
@@ -44,9 +46,9 @@ async def get_subcategories(callback: CallbackQuery):
     category_id = callback.data.split("category_")[-1]
     subcategories = await sub_category_repo.filter(category_id=category_id)
     if len(subcategories) == 0:
-        await callback.message.answer("SubCategoriyalar mavjud emas", reply_markup=menu_markup)
+        await callback.message.answer(_("SubCategoriyalar mavjud emas"), reply_markup=menu_markup)
     else:
-        await callback.message.edit_text(text="Categoriyani tanlang", reply_markup=create_inline_buttons(prefix="subcategory_", data=subcategories, return_prefix=f"return_to_order"))
+        await callback.message.edit_text(text=_("Categoriyani tanlang"), reply_markup=create_inline_buttons(prefix="subcategory_", data=subcategories, return_prefix=f"return_to_order"))
 
 
 @router.callback_query(F.data == "home_page_order")
@@ -55,7 +57,7 @@ async def get_subcategories(callback: CallbackQuery):
         catogirydan orqaga
     """
     await callback.message.delete()
-    await callback.message.answer("Bosh menyu", reply_markup=menu_markup)
+    await callback.message.answer(_("Bosh menyu"), reply_markup=menu_markup)
     # callback.message.
 
 
@@ -65,7 +67,7 @@ async def get_subcategories(callback: CallbackQuery):
         catogirydan orqaga
     """
     categories = await category_repo.get_all()
-    await callback.message.edit_text(text="Categoriyani tanlang", reply_markup=create_inline_buttons(prefix="category_", data=categories, return_prefix="home_page_order"))
+    await callback.message.edit_text(text=_("Categoriyani tanlang"), reply_markup=create_inline_buttons(prefix="category_", data=categories, return_prefix="home_page_order"))
 
     # callback.message.
 
@@ -78,7 +80,7 @@ async def get_subcategories(callback: CallbackQuery):
     subcategory_id = callback.data.split("subcategory_")[-1]
     subcategories = await product_repo.filter(subcategory_id=subcategory_id)
     if len(subcategories) == 0:
-        await callback.message.answer("Mahsulot mavjud emas", reply_markup=menu_markup)
+        await callback.message.answer(_("Mahsulot mavjud emas"), reply_markup=menu_markup)
     else:
         category_id = subcategories[0].subcategory_id
         category = await sub_category_repo.get(category_id)
@@ -86,7 +88,7 @@ async def get_subcategories(callback: CallbackQuery):
         lst = [InputMediaPhoto(media=FSInputFile(item.image))
                for item in subcategories]
         await callback.message.answer_media_group(media=lst)
-        await callback.message.answer(text="Mahsulotni tanlang", reply_markup=create_inline_buttons(prefix="product_", data=subcategories, return_prefix=f"category_{category_id}"))
+        await callback.message.answer(text=_("Mahsulotni tanlang"), reply_markup=create_inline_buttons(prefix="product_", data=subcategories, return_prefix=f"category_{category_id}"))
         await callback.message.delete()
 
 
@@ -121,7 +123,7 @@ async def select_state(message: Message,  state: FSMContext):
     data = await state.get_data()
     size = message.text
     product = await product_repo.get(data['product_id'])
-    await message.answer("Buyurtma qabul qilindi", reply_markup=menu_markup)
+    await message.answer(_("Buyurtma qabul qilindi"), reply_markup=menu_markup)
     new_img = FSInputFile(product.image)
     description = f"Buyurtma qoldirildi\n"
     description += f"Nomi: {product.name}\n"

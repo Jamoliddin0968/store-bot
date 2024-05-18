@@ -1,17 +1,18 @@
-# Translations template for PROJECT.
+# English translations for PROJECT.
 # Copyright (C) 2024 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-05-18 19:15+0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2024-05-18 19:15+0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,29 +20,28 @@ msgstr ""
 
 #: src/handlers/order.py:34
 msgid "Categoriyalar mavjud emas"
-msgstr ""
+msgstr "Categories not available"
 
 #: src/handlers/order.py:36 src/handlers/order.py:51 src/handlers/order.py:70
 msgid "Categoriyani tanlang"
-msgstr ""
+msgstr "Select a category"
 
 #: src/handlers/order.py:49
 msgid "SubCategoriyalar mavjud emas"
-msgstr ""
+msgstr "Subcategories not available"
 
 #: src/handlers/order.py:60 src/handlers/start.py:74
 msgid "Bosh menyu"
-msgstr ""
+msgstr "Main menu"
 
 #: src/handlers/order.py:83
 msgid "Mahsulot mavjud emas"
-msgstr ""
+msgstr "Product not available"
 
 #: src/handlers/order.py:91
 msgid "Mahsulotni tanlang"
-msgstr ""
+msgstr "Select a product"
 
 #: src/handlers/order.py:126
 msgid "Buyurtma qabul qilindi"
-msgstr ""
-
+msgstr "Order accepted"

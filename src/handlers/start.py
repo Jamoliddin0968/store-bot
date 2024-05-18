@@ -7,6 +7,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import (CallbackQuery, KeyboardButton, Message,
                            ReplyKeyboardMarkup)
 from aiogram.types.input_file import BufferedInputFile
+from aiogram.utils.i18n import gettext as _
 
 from src.repositories import UsersRepo
 
@@ -70,4 +71,4 @@ async def callbacks_num(message: Message, state: FSMContext):
         "phone_number": data.get("phone_number")
     })
     await state.clear()
-    await message.answer(text="Bosh menyu", reply_markup=menu_markup)
+    await message.answer(text=_("Bosh menyu"), reply_markup=menu_markup)
