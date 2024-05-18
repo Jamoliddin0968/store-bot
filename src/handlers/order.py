@@ -1,7 +1,8 @@
 
 from aiogram import Dispatcher, F, Router, types
 from aiogram.fsm.context import FSMContext
-from aiogram.types import CallbackQuery, FSInputFile, Message
+from aiogram.types import (CallbackQuery, FSInputFile, Message,
+                           ReplyKeyboardRemove)
 from aiogram.types.input_file import FSInputFile
 from aiogram.types.input_media_photo import InputMediaPhoto
 
@@ -104,14 +105,14 @@ async def get_subcategories(callback: CallbackQuery, state: FSMContext):
         await state.set_state(OrderState.type)
     else:
         await state.update_data(product_id=product.id)
-        await callback.message.answer(text="Mahsulot o'lchamini kiriting:", reply_markup=None)
+        await callback.message.answer(text="Mahsulot o'lchamini kiriting:", reply_markup=ReplyKeyboardRemove())
         await state.set_state(OrderState.size)
 
 
 @router.message(OrderState.type)
 async def select_state(message: Message, state: FSMContext):
     await state.update_data(type=message.text)
-    await message.answer(text="Mahsulot o'lchamini kiriting:")
+    await message.answer(text="Mahsulot o'lchamini kiriting:", reply_markup=ReplyKeyboardRemove())
     await state.set_state(OrderState.size)
 
 
