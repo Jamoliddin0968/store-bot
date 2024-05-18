@@ -32,8 +32,8 @@ async def main():
          ], BotCommandScopeDefault()
     )
     await bot.delete_webhook()
-    dp.message.middleware(ConstI18nMiddleware(locale='en', i18n=i18n))
-    # register_routes(dp)
+    dp.update.middleware(ConstI18nMiddleware(locale='en', i18n=i18n))
+    register_routes(dp)
     await dp.start_polling(bot)
 
 

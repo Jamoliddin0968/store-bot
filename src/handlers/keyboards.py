@@ -2,8 +2,11 @@ from typing import List
 
 from aiogram.types import (InlineKeyboardButton, InlineKeyboardMarkup,
                            KeyboardButton, ReplyKeyboardMarkup)
+from aiogram.utils.i18n import ConstI18nMiddleware, I18n
 from aiogram.utils.i18n import gettext as _
 
+i18n = I18n(path="locales", default_locale="en", domain="messages")
+_ = i18n.gettext
 contact_share_markup = ReplyKeyboardMarkup(
     keyboard=[
         [KeyboardButton(text='📞 Telefon raqamni yuborish',
