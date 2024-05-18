@@ -1,18 +1,21 @@
 import asyncio
-import json
+# import json
 import logging
-from contextlib import asynccontextmanager
 
-from aiogram import Bot, Dispatcher, Router, types
-from aiogram.enums import ParseMode
+from aiogram import Bot, Dispatcher, Router
+# from aiogram.enums import ParseMode
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import BotCommand, BotCommandScopeDefault
-from fastapi import FastAPI
-from starlette.staticfiles import StaticFiles
 
 from src import config
-from src.admin import app as admin_app
+# from src.admin import app as admin_app
 from src.handlers import register_routes
+
+# from contextlib import asynccontextmanager
+
+# from fastapi import FastAPI
+# from starlette.staticfiles import StaticFiles
+
 
 # from src.handlers.keyboards import view_button
 # from src.middlewares.config import ConfigMiddleware
