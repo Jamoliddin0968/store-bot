@@ -10,6 +10,7 @@ from aiogram.types.input_file import BufferedInputFile
 from aiogram.utils.i18n import gettext as _
 
 from src.repositories import UsersRepo
+from src.translate import lang_middleware
 
 from .keyboards import contact_share_markup, get_menu_markup, language_markup
 from .states import Registration
@@ -70,5 +71,6 @@ async def callbacks_num(message: Message, state: FSMContext):
         "lang": lang,
         "phone_number": data.get("phone_number")
     })
+    await lang_middleware.set_locale(state=state, locale=lang)
     await state.set_state(state=None)
     await message.answer(text=_("Bosh menyu"), reply_markup=get_menu_markup())
