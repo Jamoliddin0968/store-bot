@@ -1,4 +1,4 @@
-# English translations for PROJECT.
+# Russian translations for PROJECT.
 # Copyright (C) 2024 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
@@ -10,80 +10,82 @@ msgstr ""
 "POT-Creation-Date: 2024-05-19 11:56+0500\n"
 "PO-Revision-Date: 2024-05-19 11:57+0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: en\n"
-"Language-Team: en <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ru\n"
+"Language-Team: ru <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.13.1\n"
+
 #: src/handlers/keyboards.py:30
 msgid "🛒 Buyurtma berish"
-msgstr "🛒 Place an Order"
+msgstr "🛒 Сделать заказ"
 
 #: src/handlers/keyboards.py:31
 msgid "⚙️ Sozlamalar"
-msgstr "⚙️ Settings"
+msgstr "⚙️ Настройки"
 
 #: src/handlers/keyboards.py:32
 msgid "📞 Biz bilan bo'g'lanish"
-msgstr "📞 Contact Us"
+msgstr "📞 Связаться с нами"
 
 #: src/handlers/keyboards.py:41
 msgid "⚙️ Tilni o'zgartirish"
-msgstr "⚙️ Change Language"
+msgstr "⚙️ Изменить язык"
 
 #: src/handlers/keyboards.py:42
 msgid "⚙️ Telefon raqamni o'zgartirish"
-msgstr "⚙️ Change Phone Number"
+msgstr "⚙️ Изменить номер телефона"
 
 #: src/handlers/keyboards.py:44
 msgid "🏠 Bosh menyu"
-msgstr "🏠 Main Menu"
+msgstr "🏠 Главное меню"
 
 #: src/handlers/keyboards.py:53
 msgid "🔙 Orqaga"
-msgstr "🔙 Back"
+msgstr "🔙 Назад"
 
 #: src/handlers/order.py:34
 msgid "Categoriyalar mavjud emas"
-msgstr "Categories not available"
+msgstr "Категории отсутствуют"
 
 #: src/handlers/order.py:36 src/handlers/order.py:51 src/handlers/order.py:70
 msgid "Categoriyani tanlang"
-msgstr "Select a category"
+msgstr "Выберите категорию"
 
 #: src/handlers/order.py:49
 msgid "SubCategoriyalar mavjud emas"
-msgstr "Subcategories not available"
+msgstr "Подкатегории отсутствуют"
 
 #: src/handlers/order.py:60 src/handlers/start.py:74
 msgid "Bosh menyu"
-msgstr "Main Menu"
+msgstr "Главное меню"
 
 #: src/handlers/order.py:83
 msgid "Mahsulot mavjud emas"
-msgstr "Product not available"
+msgstr "Продукт отсутствует"
 
 #: src/handlers/order.py:91
 msgid "Mahsulotni tanlang"
-msgstr "Select a product"
+msgstr "Выберите продукт"
 
 #: src/handlers/order.py:126
 msgid "Buyurtma qabul qilindi"
-msgstr "Order accepted"
+msgstr "Заказ принят"
 
 #: src/handlers/settings.py:22 src/handlers/settings.py:53 src/handlers/settings.py:90
 msgid "⚙️ Sozlamalar\n"
-msgstr "⚙️ Settings"
+msgstr "⚙️ Настройки"
 
 #: src/handlers/settings.py:30 src/handlers/settings.py:45 src/handlers/start.py:51 src/handlers/start.py:65
 msgid "Tilni tanlang"
-msgstr "Choose a language"
+msgstr "Выберите язык"
 
 #: src/handlers/settings.py:82
 msgid ""
 "Telelfon raqamingizni yuboring (12 xonali)\n"
 "+998 XX XXX XX XX"
-msgstr "Send your phone number (12 digits)\n"
+msgstr "Отправьте ваш номер телефона (12 цифр)\n"
 "+998 XX XXX XX XX"

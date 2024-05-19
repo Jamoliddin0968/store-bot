@@ -7,14 +7,16 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import (CallbackQuery, KeyboardButton, Message,
                            ReplyKeyboardMarkup)
 from aiogram.types.input_file import BufferedInputFile
+from aiogram.utils.i18n import gettext as _
+from aiogram.utils.i18n import lazy_gettext as __
 
-from .keyboards import menu_markup
+from .keyboards import get_menu_markup
 
 router = Router()
 # router.message.filter(IsPrivateFilter())
 dp = Dispatcher()
 
 
-@router.message(F.text == "Bosh menyu")
+@router.message(F.text == __("Bosh menyu"))
 async def start_handler(message: types.Message):
-    await message.answer("""Bosh menyu""", reply_markup=menu_markup)
+    await message.answer("""Bosh menyu""", reply_markup=get_menu_markup())

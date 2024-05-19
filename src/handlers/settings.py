@@ -1,17 +1,14 @@
-import io
 
 from aiogram import Dispatcher, F, Router, types
-from aiogram.filters import Command
-from aiogram.filters.callback_data import CallbackData
 from aiogram.fsm.context import FSMContext
-from aiogram.types import (CallbackQuery, KeyboardButton, Message,
-                           ReplyKeyboardMarkup)
-from aiogram.types.input_file import BufferedInputFile
+from aiogram.types import CallbackQuery, Message, ReplyKeyboardRemove
+from aiogram.utils.i18n import gettext as _
+from aiogram.utils.i18n import lazy_gettext as __
 
 from src.repositories import UsersRepo
+from src.translate import lang_middleware
 
-from .keyboards import (contact_share_markup, language_markup, menu_markup,
-                        settings_markup)
+from .keyboards import get_menu_markup, get_settings_markup, language_markup
 from .states import SeetingsState
 
 router = Router()
@@ -21,9 +18,9 @@ dp = Dispatcher()
 users_repo = UsersRepo()
 
 
-@router.message(F.text == "⚙️ Sozlamalar")
+@router.message(F.text == __("⚙️ Sozlamalar"))
 async def start_handler(message: types.Message):
-    await message.answer("""⚙️ Sozlamalar\n""", reply_markup=settings_markup)
+    await message.answer(_("""⚙️ Sozlamalar\n"""), reply_markup=get_settings_markup())
 
 
 @router.callback_query(F.data == "settings_lang")
@@ -31,7 +28,7 @@ async def set_lang(callback: CallbackQuery, state: FSMContext):
     """
         productni olish
     """
-    await callback.message.answer("Tilni tanlang", reply_markup=language_markup)
+    await callback.message.answer(_("Tilni tanlang"), reply_markup=language_markup)
     await state.set_state(SeetingsState.lang)
 
 
@@ -46,15 +43,16 @@ async def callbacks_num(message: Message, state: FSMContext):
     elif message.text == "🇺🇸 En":
         lang = "en"
     else:
-        await message.answer("Tilni tanlang", reply_markup=language_markup)
+        await message.answer(_("Tilni tanlang"), reply_markup=language_markup)
         return None
     user = await users_repo.filter_one(tg_user_id=telegram_id)
     if user:
         await users_repo.update(user.id, {
             "lang": lang
         })
-    await state.clear()
-    await message.answer("""⚙️ Sozlamalar\n""", reply_markup=settings_markup)
+        await lang_middleware.set_locale(state=state, locale=lang)
+    await state.set_state(state=None)
+    await message.answer(_("""⚙️ Sozlamalar\n"""), reply_markup=get_settings_markup())
 
 
 @router.callback_query(F.data == "settings_phone")
@@ -83,15 +81,17 @@ def validate_uzbek_phone_number(phone_number: str):
 async def callbacks_num(message: Message, state: FSMContext):
     telegram_id = message.from_user.id
     if not validate_uzbek_phone_number(message.text):
-        await message.answer("Telelfon raqamingizni yuboring (12 xonali)\n+998 XX XXX XX XX")
+        await message.answer(_("Telelfon raqamingizni yuboring (12 xonali)\n+998 XX XXX XX XX"))
     else:
         user = await users_repo.filter_one(tg_user_id=telegram_id)
         if user:
             await users_repo.update(user.id, {
                 "phone_number": message.text
             })
-        await state.clear()
-        await message.answer("""⚙️ Sozlamalar\n""", reply_markup=settings_markup)
+
+        await state.set_state(state=None)
+        await message.answer(reply_markup=ReplyKeyboardRemove())
+        await message.answer(_("""⚙️ Sozlamalar\n"""), reply_markup=get_settings_markup())
 
 
 @router.callback_query(F.data == "settings_home")
@@ -99,5 +99,5 @@ async def set_lang(callback: CallbackQuery):
     """
         settings phone
     """
-    await callback.message.answer(text="Bosh menyu", reply_markup=menu_markup)
+    await callback.message.answer(text="Bosh menyu", reply_markup=get_menu_markup())
 # f=0

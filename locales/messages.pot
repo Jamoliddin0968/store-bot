@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-18 19:43+0500\n"
+"POT-Creation-Date: 2024-05-19 11:56+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,16 +17,32 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.13.1\n"
 
-#: src/handlers/keyboards.py:28
+#: src/handlers/keyboards.py:30
 msgid "🛒 Buyurtma berish"
 msgstr ""
 
-#: src/handlers/keyboards.py:29
+#: src/handlers/keyboards.py:31
 msgid "⚙️ Sozlamalar"
 msgstr ""
 
-#: src/handlers/keyboards.py:30
+#: src/handlers/keyboards.py:32
 msgid "📞 Biz bilan bo'g'lanish"
+msgstr ""
+
+#: src/handlers/keyboards.py:41
+msgid "⚙️ Tilni o'zgartirish"
+msgstr ""
+
+#: src/handlers/keyboards.py:42
+msgid "⚙️ Telefon raqamni o'zgartirish"
+msgstr ""
+
+#: src/handlers/keyboards.py:44
+msgid "🏠 Bosh menyu"
+msgstr ""
+
+#: src/handlers/keyboards.py:53
+msgid "🔙 Orqaga"
 msgstr ""
 
 #: src/handlers/order.py:34
@@ -55,5 +71,21 @@ msgstr ""
 
 #: src/handlers/order.py:126
 msgid "Buyurtma qabul qilindi"
+msgstr ""
+
+#: src/handlers/settings.py:23 src/handlers/settings.py:55
+#: src/handlers/settings.py:93
+msgid "⚙️ Sozlamalar\n"
+msgstr ""
+
+#: src/handlers/settings.py:31 src/handlers/settings.py:46
+#: src/handlers/start.py:51 src/handlers/start.py:65
+msgid "Tilni tanlang"
+msgstr ""
+
+#: src/handlers/settings.py:84
+msgid ""
+"Telelfon raqamingizni yuboring (12 xonali)\n"
+"+998 XX XXX XX XX"
 msgstr ""
 

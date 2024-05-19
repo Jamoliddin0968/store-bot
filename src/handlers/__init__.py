@@ -1,6 +1,6 @@
 from aiogram import Dispatcher
-from aiogram.utils.i18n import ConstI18nMiddleware, I18n
-from aiogram.utils.i18n.middleware import ConstI18nMiddleware
+
+from src.translate import lang_middleware
 
 from .common import router as home_router
 from .order import router as order_routes
@@ -8,13 +8,18 @@ from .settings import router as settings_router
 from .start import router as start_routes
 from .support import router as support_router
 
-i18n = I18n(path="locales", default_locale="en", domain="messages")
+support_router.message.outer_middleware(lang_middleware)
+settings_router.message.outer_middleware(lang_middleware)
+home_router.message.outer_middleware(lang_middleware)
+start_routes.message.outer_middleware(lang_middleware)
+order_routes.message.outer_middleware(lang_middleware)
 
-support_router.message.middleware(ConstI18nMiddleware(locale='en', i18n=i18n))
-settings_router.message.middleware(ConstI18nMiddleware(locale='en', i18n=i18n))
-home_router.message.middleware(ConstI18nMiddleware(locale='en', i18n=i18n))
-start_routes.message.middleware(ConstI18nMiddleware(locale='en', i18n=i18n))
-order_routes.message.middleware(ConstI18nMiddleware(locale='en', i18n=i18n))
+
+support_router.callback_query.outer_middleware(lang_middleware)
+settings_router.callback_query.outer_middleware(lang_middleware)
+home_router.callback_query.outer_middleware(lang_middleware)
+start_routes.callback_query.outer_middleware(lang_middleware)
+order_routes.callback_query.outer_middleware(lang_middleware)
 
 
 def register_routes(dp: Dispatcher):
