@@ -10,13 +10,13 @@ from aiogram.types.input_file import BufferedInputFile
 from aiogram.utils.i18n import gettext as _
 from aiogram.utils.i18n import lazy_gettext as __
 
+from .filters import IsPrivateFilter
 from .keyboards import get_menu_markup
 
 router = Router()
-# router.message.filter(IsPrivateFilter())
-dp = Dispatcher()
+router.message.filter(IsPrivateFilter())
 
 
 @router.message(F.text == __("Bosh menyu"))
 async def start_handler(message: types.Message):
-    await message.answer("""Bosh menyu""", reply_markup=get_menu_markup())
+    await message.answer(_("Bosh menyu"), reply_markup=get_menu_markup())

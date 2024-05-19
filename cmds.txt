@@ -8,3 +8,6 @@ pybabel init -i locales/messages.pot -d locales -D messages -l ru
 pybabel compile -d locales -D messages
 
 pybabel update -d locales -D messages -i locales/messages.pot --ignore-dirs env
+
+-- for update
+pybabel update -i locales/messages.pot -d locales -D messages -l en

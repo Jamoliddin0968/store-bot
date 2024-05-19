@@ -1,3 +1,4 @@
+from .filters import IsPrivateFilter
 import io
 
 from aiogram import Dispatcher, F, Router, types
@@ -12,29 +13,28 @@ from aiogram.utils.i18n import gettext as _
 from src.repositories import UsersRepo
 from src.translate import lang_middleware
 
-from .keyboards import contact_share_markup, get_menu_markup, language_markup
+from .keyboards import (get_contact_share_markup, get_menu_markup,
+                        language_markup)
 from .states import Registration
 
 users_repo = UsersRepo()
 
 router = Router()
-# router.message.filter(IsPrivateFilter())
-dp = Dispatcher()
+router.message.filter(IsPrivateFilter())
 
 
 @router.message(Command("start"))
 async def start_handler(message: types.Message, state: FSMContext):
-    await message.answer(f"Assalomu alaykum {message.from_user.first_name}")
     description = "Assalomu alaykum ! YotiqTut onlayn magazinga xush kelibsiz.\n\n"
     description += "Привет! Добро пожаловать в интернет-журнал YatiqTut.\n\n"
     description += "Hello! Welcome to the YatiqTut online store\n"
     await message.answer(description)
     telegram_id = message.from_user.id
     if await users_repo.is_exists(tg_user_id=telegram_id):
-        await message.answer(text="Bosh menyu", reply_markup=get_menu_markup())
+        await message.answer(text=_("Bosh menyu"), reply_markup=get_menu_markup())
     else:
         await message.answer(
-            f"Iltimos telefon raqamingizni yuboring !", reply_markup=contact_share_markup
+            _(f"Iltimos telefon raqamingizni yuboring !"), reply_markup=get_contact_share_markup()
         )
         await state.set_state(state=None)
         await state.set_state(Registration.phone_number)

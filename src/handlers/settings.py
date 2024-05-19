@@ -8,12 +8,12 @@ from aiogram.utils.i18n import lazy_gettext as __
 from src.repositories import UsersRepo
 from src.translate import lang_middleware
 
+from .filters import IsPrivateFilter
 from .keyboards import get_menu_markup, get_settings_markup, language_markup
 from .states import SeetingsState
 
 router = Router()
-# router.message.filter(IsPrivateFilter())
-dp = Dispatcher()
+router.message.filter(IsPrivateFilter())
 
 users_repo = UsersRepo()
 
@@ -60,7 +60,7 @@ async def set_phone(callback: CallbackQuery, state: FSMContext):
     """
         settings phone
     """
-    await callback.message.answer("Telelfon raqamingizni yuboring (12 xonali)")
+    await callback.message.answer(_("Telelfon raqamingizni yuboring (12 xonali)"))
     await state.set_state(SeetingsState.phone)
 
 
@@ -99,5 +99,4 @@ async def set_lang(callback: CallbackQuery):
     """
         settings phone
     """
-    await callback.message.answer(text="Bosh menyu", reply_markup=get_menu_markup())
-# f=0
+    await callback.message.answer(text=_("Bosh menyu"), reply_markup=get_menu_markup())

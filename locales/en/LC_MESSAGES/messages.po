@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-19 11:56+0500\n"
+"POT-Creation-Date: 2024-05-19 14:17+0500\n"
 "PO-Revision-Date: 2024-05-19 11:57+0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -17,73 +17,119 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.13.1\n"
-#: src/handlers/keyboards.py:30
-msgid "🛒 Buyurtma berish"
-msgstr "🛒 Place an Order"
 
-#: src/handlers/keyboards.py:31
-msgid "⚙️ Sozlamalar"
-msgstr "⚙️ Settings"
-
-#: src/handlers/keyboards.py:32
-msgid "📞 Biz bilan bo'g'lanish"
-msgstr "📞 Contact Us"
-
-#: src/handlers/keyboards.py:41
-msgid "⚙️ Tilni o'zgartirish"
-msgstr "⚙️ Change Language"
-
-#: src/handlers/keyboards.py:42
-msgid "⚙️ Telefon raqamni o'zgartirish"
-msgstr "⚙️ Change Phone Number"
-
-#: src/handlers/keyboards.py:44
-msgid "🏠 Bosh menyu"
-msgstr "🏠 Main Menu"
-
-#: src/handlers/keyboards.py:53
-msgid "🔙 Orqaga"
-msgstr "🔙 Back"
-
-#: src/handlers/order.py:34
-msgid "Categoriyalar mavjud emas"
-msgstr "Categories not available"
-
-#: src/handlers/order.py:36 src/handlers/order.py:51 src/handlers/order.py:70
-msgid "Categoriyani tanlang"
-msgstr "Select a category"
-
-#: src/handlers/order.py:49
-msgid "SubCategoriyalar mavjud emas"
-msgstr "Subcategories not available"
-
-#: src/handlers/order.py:60 src/handlers/start.py:74
+#: src/handlers/common.py:22 src/handlers/order.py:77
+#: src/handlers/settings.py:102 src/handlers/start.py:34
+#: src/handlers/start.py:76
 msgid "Bosh menyu"
 msgstr "Main Menu"
 
-#: src/handlers/order.py:83
+#: src/handlers/keyboards.py:14
+#, fuzzy
+msgid "📞 Telefon raqamni yuborish"
+msgstr "⚙️ Change Phone Number"
+
+#: src/handlers/keyboards.py:38
+msgid "🛒 Buyurtma berish"
+msgstr "🛒 Place an Order"
+
+#: src/handlers/keyboards.py:40
+msgid "⚙️ Sozlamalar"
+msgstr "⚙️ Settings"
+
+#: src/handlers/keyboards.py:41
+msgid "📞 Biz bilan bo'g'lanish"
+msgstr "📞 Contact Us"
+
+#: src/handlers/keyboards.py:55
+msgid "⚙️ Tilni o'zgartirish"
+msgstr "⚙️ Change Language"
+
+#: src/handlers/keyboards.py:58
+msgid "⚙️ Telefon raqamni o'zgartirish"
+msgstr "⚙️ Change Phone Number"
+
+#: src/handlers/keyboards.py:64
+msgid "🏠 Bosh menyu"
+msgstr "🏠 Main Menu"
+
+#: src/handlers/keyboards.py:84
+msgid "🔙 Orqaga"
+msgstr "🔙 Back"
+
+#: src/handlers/order.py:35
+msgid "Categoriyalar mavjud emas"
+msgstr "Categories not available"
+
+#: src/handlers/order.py:39 src/handlers/order.py:62 src/handlers/order.py:88
+msgid "Categoriyani tanlang"
+msgstr "Select a category"
+
+#: src/handlers/order.py:58
+msgid "SubCategoriyalar mavjud emas"
+msgstr "Subcategories not available"
+
+#: src/handlers/order.py:106 src/handlers/order.py:135
 msgid "Mahsulot mavjud emas"
 msgstr "Product not available"
 
-#: src/handlers/order.py:91
+#: src/handlers/order.py:116
 msgid "Mahsulotni tanlang"
 msgstr "Select a product"
 
-#: src/handlers/order.py:126
+#: src/handlers/order.py:140
+#, fuzzy
+msgid "Tanlang"
+msgstr "Choose a language"
+
+
+#: src/handlers/order.py:167
 msgid "Buyurtma qabul qilindi"
 msgstr "Order accepted"
 
-#: src/handlers/settings.py:22 src/handlers/settings.py:53 src/handlers/settings.py:90
+#: src/handlers/settings.py:23 src/handlers/settings.py:55
+#: src/handlers/settings.py:94
 msgid "⚙️ Sozlamalar\n"
 msgstr "⚙️ Settings"
 
-#: src/handlers/settings.py:30 src/handlers/settings.py:45 src/handlers/start.py:51 src/handlers/start.py:65
+#: src/handlers/settings.py:31 src/handlers/settings.py:46
+#: src/handlers/start.py:52 src/handlers/start.py:66
 msgid "Tilni tanlang"
 msgstr "Choose a language"
 
-#: src/handlers/settings.py:82
+#: src/handlers/settings.py:63
+#, fuzzy
+msgid "Telelfon raqamingizni yuboring (12 xonali)"
+msgstr ""
+"Send your phone number (12 digits)\n"
+"+998 XX XXX XX XX"
+
+#: src/handlers/settings.py:84
 msgid ""
 "Telelfon raqamingizni yuboring (12 xonali)\n"
 "+998 XX XXX XX XX"
-msgstr "Send your phone number (12 digits)\n"
+msgstr ""
+"Send your phone number (12 digits)\n"
 "+998 XX XXX XX XX"
+
+#: src/handlers/start.py:37
+#, fuzzy
+msgid "Iltimos telefon raqamingizni yuboring !"
+msgstr ""
+"Send your phone number (12 digits)\n"
+"+998 XX XXX XX XX"
+
+
+#: src/handlers/support.py:22
+msgid ""
+"Biz bilan bog'lanish\n"
+"📱 +998902720884\n"
+"📱 +998997600884"
+msgstr ""
+"Contact Us\n"
+"📱 +998902720884\n"
+"📱 +998997600884"
+
+#: src/handlers/order.py:148 src/handlers/order.py:157
+msgid "Mahsulot o'lchamini kiriting:"
+msgstr "Enter the product size:"
