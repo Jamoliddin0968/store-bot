@@ -3,7 +3,7 @@ from typing import Dict
 from pydantic import BaseModel
 
 from src.database import get_db
-from src.models import Category, Products, SubCategory, Users
+from src.models import Category, Products, SubCategory, Users, Words
 
 
 class CRUDRepository:
@@ -66,6 +66,13 @@ class CRUDRepository:
 class UsersRepo(CRUDRepository):
     model = Users
 
+    async def get_user_language(self, tg_user_id):
+        language = "uz"
+        user: Users = await self.filter_one(tg_user_id=tg_user_id)
+        if user:
+            return user.lang
+        return language
+
 
 class CategoryRepo(CRUDRepository):
     model = Category
@@ -77,3 +84,11 @@ class SubCategoryRepo(CRUDRepository):
 
 class ProductRepo(CRUDRepository):
     model = Products
+
+
+class WordsRepo(CRUDRepository):
+    model = Words
+
+    def get_by_word(self, word):
+        with get_db() as session:
+            return session.query(self.model).filter_by(value=word).first()

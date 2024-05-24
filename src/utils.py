@@ -4,6 +4,24 @@ from typing import BinaryIO
 
 from fastapi import UploadFile
 
+from src.repositories import WordsRepo
+
+word_repo = WordsRepo()
+
+
+def get_word(value: str, language: str) -> str:
+    word = word_repo.get_by_word(value)
+    language = language.value
+    if not word:
+        return value
+    if language == "uz" and word.value_uz:
+        return word.value_uz
+    if language == "ru" and word.value_ru:
+        return word.value_ru
+    if language == "en" and word.value_en:
+        return word.value_en
+    return value
+
 
 def _get_file_extension(filename):
     extension = filename.split('.')[-1].lower()

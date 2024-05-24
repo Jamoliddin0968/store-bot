@@ -1,6 +1,5 @@
 # Your models for the app
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, ForeignKey, Integer, String
 
 from src.models.base import BaseModel
 

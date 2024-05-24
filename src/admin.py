@@ -1,18 +1,14 @@
 
 import uuid
-from io import BytesIO
-from typing import Coroutine
 
 from sqladmin import Admin, ModelView
 from sqladmin.authentication import AuthenticationBackend
 from starlette.applications import Starlette
 from starlette.datastructures import UploadFile
 from starlette.requests import Request
-from wtforms import FileField, Form, StringField, validators
 
 from src.database import engine
-from src.models import Category, Products, SubCategory, Type
-from src.utils import save_image
+from src.models import Category, Products, SubCategory, Type, Words
 
 # from src.infrastructure.services.token_service import TokenService
 
@@ -66,6 +62,12 @@ class ProductAdmin(ModelView, model=Products):
         return super().on_model_change(data, model, is_created, request)
 
 
+class TranslatesAdmin(ModelView, model=Words):
+    icon = "fa-solid fa-translate"
+    column_list = ["value", "value_uz", "value_ru", "value_en"]
+    page_size = 25
+
+
 class TypeAdmin(ModelView, model=Type):
     icon = "fa-solid fa-category"
     column_list = ["name",]
@@ -88,3 +90,4 @@ admin.add_view(CategoryAdmin)
 admin.add_view(SubCategoryAdmin)
 admin.add_view(ProductAdmin)
 admin.add_view(TypeAdmin)
+admin.add_view(TranslatesAdmin)

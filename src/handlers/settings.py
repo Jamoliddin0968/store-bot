@@ -50,7 +50,6 @@ async def callbacks_num(message: Message, state: FSMContext):
         await users_repo.update(user.id, {
             "lang": lang
         })
-        await lang_middleware.set_locale(state=state, locale=lang)
     await state.set_state(state=None)
     await message.answer(_("""⚙️ Sozlamalar\n"""), reply_markup=get_settings_markup())
 

@@ -29,6 +29,7 @@ async def start_handler(message: types.Message):
     """
     Buyurtma berish
     """
+    language = await user_repo.get_user_language(message.from_user.id)
     categories = await category_repo.get_all()
     if len(categories) == 0:
         await message.answer(
@@ -38,7 +39,7 @@ async def start_handler(message: types.Message):
         await message.answer(
             text=_("Categoriyani tanlang"),
             reply_markup=create_inline_buttons(
-                prefix="category_", data=categories, return_prefix="home_page_order"
+                prefix="category_", data=categories, return_prefix="home_page_order", language=language
             ),
         )
 
@@ -51,6 +52,7 @@ async def get_subcategories(callback: CallbackQuery):
     """
     sub category ni olish
     """
+    language = await user_repo.get_user_language(callback.from_user.id)
     category_id = callback.data.split("category_")[-1]
     subcategories = await sub_category_repo.filter(category_id=category_id)
     if len(subcategories) == 0:
@@ -64,6 +66,7 @@ async def get_subcategories(callback: CallbackQuery):
                 prefix="subcategory_",
                 data=subcategories,
                 return_prefix=f"return_to_order",
+                language=language
             ),
         )
 
@@ -83,11 +86,12 @@ async def get_subcategories(callback: CallbackQuery):
     """
     catogirydan orqaga
     """
+    language = await user_repo.get_user_language(callback.from_user.id)
     categories = await category_repo.get_all()
     await callback.message.edit_text(
         text=_("Categoriyani tanlang"),
         reply_markup=create_inline_buttons(
-            prefix="category_", data=categories, return_prefix="home_page_order"
+            prefix="category_", data=categories, return_prefix="home_page_order", language=language
         ),
     )
 
@@ -99,6 +103,7 @@ async def get_subcategories(callback: CallbackQuery):
     """
     productni olish
     """
+    language = await user_repo.get_user_language(callback.from_user.id)
     subcategory_id = callback.data.split("subcategory_")[-1]
     subcategories = await product_repo.filter(subcategory_id=subcategory_id)
     if len(subcategories) == 0:
@@ -106,6 +111,7 @@ async def get_subcategories(callback: CallbackQuery):
             _("Mahsulot mavjud emas"), reply_markup=get_menu_markup()
         )
     else:
+
         category_id = subcategories[0].subcategory_id
         category = await sub_category_repo.get(category_id)
         category_id = category.category_id
@@ -118,6 +124,7 @@ async def get_subcategories(callback: CallbackQuery):
                 prefix="product_",
                 data=subcategories,
                 return_prefix=f"category_{category_id}",
+                language=language
             ),
         )
         await callback.message.delete()
@@ -128,6 +135,7 @@ async def get_subcategories(callback: CallbackQuery, state: FSMContext):
     """
     productni olish
     """
+    language = await user_repo.get_user_language(callback.from_user.id)
     product_id = callback.data.split("product_")[-1]
     product = await product_repo.filter_one(id=product_id)
     if not product:
@@ -139,7 +147,7 @@ async def get_subcategories(callback: CallbackQuery, state: FSMContext):
         await callback.message.answer(
             _("Tanlang"),
             reply_markup=create_product_buttons(
-                prefix="item_", data=product.types),
+                prefix="item_", data=product.types, language=language),
         )
         await state.set_state(OrderState.type)
     else:
