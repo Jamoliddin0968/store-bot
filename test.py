@@ -8,6 +8,4 @@ from src.repositories import ProductRepo
 app = FastAPI()
 
 
-async def get_():
-    return await ProductRepo().get_all()
 app.mount("/", admin_app)
