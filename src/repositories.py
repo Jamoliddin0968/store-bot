@@ -1,15 +1,20 @@
-from typing import Dict
+from typing import Dict, Generic, List, Type, TypeVar
 
 from pydantic import BaseModel
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import Session
 
 from src.database import get_db
-from src.models import Category, Products, SubCategory, Users, Words
+from src.models import Products, Users
+
+# Create a type variable that can be any subclass of the base model
+ModelType = TypeVar('ModelType', bound=declarative_base())
 
 
 class CRUDRepository:
-    model = None  # This should be set by the child class
+    model: Type[ModelType] = None  # This should be set by the child class
 
-    async def create(self, obj_in: Dict) -> BaseModel:
+    async def create(self, obj_in: Dict) -> ModelType:
         with get_db() as session:
             new_obj = self.model(**obj_in)
             session.add(new_obj)
@@ -17,7 +22,7 @@ class CRUDRepository:
             session.refresh(new_obj)
             return new_obj
 
-    async def get(self, instance_id: int) -> BaseModel:
+    async def get(self, instance_id: int) -> ModelType:
         with get_db() as session:
             return session.query(self.model).filter_by(id=instance_id).first()
 
@@ -58,7 +63,7 @@ class CRUDRepository:
         with get_db() as session:
             return session.query(self.model).filter_by(**filter_kwargs).all()
 
-    async def get_all(self):
+    async def get_all(self) -> List[ModelType]:
         with get_db() as session:
             return session.query(self.model).all()
 
@@ -74,21 +79,9 @@ class UsersRepo(CRUDRepository):
         return language
 
 
-class CategoryRepo(CRUDRepository):
-    model = Category
-
-
-class SubCategoryRepo(CRUDRepository):
-    model = SubCategory
-
-
 class ProductRepo(CRUDRepository):
     model = Products
 
 
-class WordsRepo(CRUDRepository):
-    model = Words
-
-    def get_by_word(self, word):
-        with get_db() as session:
-            return session.query(self.model).filter_by(value=word).first()
+user_repo = UsersRepo()
+product_repo = ProductRepo()

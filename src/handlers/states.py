@@ -12,6 +12,6 @@ class OrderState(StatesGroup):
     size = State()
 
 
-class SeetingsState(StatesGroup):
-    phone = State()
-    lang = State()
+class UserOrderState(StatesGroup):
+    start = State()
+    product = State()

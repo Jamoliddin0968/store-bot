@@ -1,93 +1,38 @@
+from typing import List
 
-import uuid
+from fastadmin import register
+# from fastadmin import register
+from fastadmin.api.frameworks.fastapi.app import app as admin_app
+from fastadmin.models.orms.sqlalchemy import SqlAlchemyModelAdmin
+from passlib.context import CryptContext
 
-from sqladmin import Admin, ModelView
-from sqladmin.authentication import AuthenticationBackend
-from starlette.applications import Starlette
-from starlette.datastructures import UploadFile
-from starlette.requests import Request
+from src.database import get_db
+from src.models import Products, TgUsers, Users
+from src.repositories import user_repo
 
-from src.database import engine
-from src.models import Category, Products, SubCategory, Type, Words
-
-# from src.infrastructure.services.token_service import TokenService
-
-app = Starlette()
+password_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
-# class AdminAuth(AuthenticationBackend):
-#     async def login(self, request: Request) -> bool:
-#         form = await request.form()
-#         try:
-#             username, password = form["username"], form["password"]
-#             if (username == "admin" and password == "123"):
-#                 acces_token = "token_data.get(access_token)"
-#                 request.session.update({"Bearer token": acces_token})
-#                 return True
-#         except Exception as e:
-#             print(e.args, e)
-#         return False
+@register(Users, sqlalchemy_sessionmaker=get_db)
+class UserAdmin(SqlAlchemyModelAdmin):
+    exclude = ("hash_password",)
+    list_display = ("id", "username", "is_superuser", "is_active")
+    list_display_links = ("id", "username")
+    list_filter = ("id", "username", "is_superuser", "is_active")
+    search_fields = ("username",)
 
-#     async def logout(self, request: Request) -> bool:
-#         request.session.clear()
-#         return True
-
-#     async def authenticate(self, request: Request) -> bool:
-#         token = request.session.get("Bearer token")
-#         if not token:
-#             return False
-#         return True
+    async def authenticate(self, username: str, password: str) -> int | None:
+        user = await user_repo.filter_one(username=username)
+        if not user:
+            return None
+        if not password_context.verify(password, user.password):
+            return None
+        return user.id
 
 
-# authentication_backend = AdminAuth(secret_key="...")
-
-
-admin = Admin(app=app, engine=engine)
-
-
-class ProductAdmin(ModelView, model=Products):
-    column_list = ["name",]
-
-    def on_model_change(self, data: dict, model, is_created: bool, request: Request):
-        image: UploadFile = data.get('image')
-        if image:
-            filename = "tmp"+"/"+str(uuid.uuid4())+"." + \
-                image.filename.split('.')[-1]
-            saved_image = UploadFile(
-                image.file,  filename=filename)
-            with open(filename, "wb") as f:
-                f.write(image.file.read())
-            image.file.seek(0)
-            data['image'] = saved_image
-        return super().on_model_change(data, model, is_created, request)
-
-
-class TranslatesAdmin(ModelView, model=Words):
-    icon = "fa-solid fa-translate"
-    column_list = ["value", "value_uz", "value_ru", "value_en"]
-    page_size = 25
-
-
-class TypeAdmin(ModelView, model=Type):
-    icon = "fa-solid fa-category"
-    column_list = ["name",]
-    page_size = 25
-
-
-class CategoryAdmin(ModelView, model=Category):
-    icon = "fa-solid fa-category"
-    column_list = ["name",]
-    page_size = 25
-
-
-class SubCategoryAdmin(ModelView, model=SubCategory):
-    icon = "fa-solid fa-category"
-    column_list = ["category", "name"]
-    page_size = 25
-
-
-admin.add_view(CategoryAdmin)
-admin.add_view(SubCategoryAdmin)
-admin.add_view(ProductAdmin)
-admin.add_view(TypeAdmin)
-admin.add_view(TranslatesAdmin)
+@register(Products)
+class ProductAdmin(SqlAlchemyModelAdmin):
+    list_display = ("id", "name", "price")
+    list_display_links = ("id", "name")
+    list_filter = ("id", "name", "price")
+    search_fields = ("name",)

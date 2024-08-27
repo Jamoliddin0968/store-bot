@@ -8,11 +8,13 @@ from fastapi import FastAPI
 from starlette.staticfiles import StaticFiles
 
 from src import config
-from src.admin import app as admin_app
-from src.handlers import register_routes
 # from src.handlers.keyboards import view_button
 # from src.middlewares.config import ConfigMiddleware
-from worker import is_work
+# from create_user import is_work
+from src.admin import admin_app
+# from src.admin import  admin_app
+from src.handlers import register_routes
+from src.sql_admin import app as admin_app
 
 router = Router()
 
@@ -37,20 +39,22 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
-
+app.mount("/fast-admin", admin_app)
 # Register middlewares
 # dp.update.middleware(ConfigMiddleware(config))
 
 # Register routes
 register_routes(dp)
 
-print(config.WEBHOOK_URL)
+# print(config.WEBHOOK_URL)
 
 
 @app.post(WEBHOOK_PATH)
 async def bot_webhook(update: dict):
     telegram_update = types.Update(**update)
     await dp.feed_webhook_update(bot=bot, update=telegram_update)
+
+app.mount("/", admin_app)
 
 
 async def test():
@@ -62,4 +66,4 @@ if __name__ == "__main__":
     )
 
     # uvicorn.run("app:app", host="0.0.0.0", port=8000,reload=True)
-app.mount("/", admin_app)
+# app.mount("/", admin_app)
