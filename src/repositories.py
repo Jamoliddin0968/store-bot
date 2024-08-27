@@ -5,7 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Session
 
 from src.database import get_db
-from src.models import Products, Users
+from src.models import Order, OrderItems, Products, Users
 
 # Create a type variable that can be any subclass of the base model
 ModelType = TypeVar('ModelType', bound=declarative_base())
@@ -83,5 +83,15 @@ class ProductRepo(CRUDRepository):
     model = Products
 
 
+class OrderRepo(CRUDRepository):
+    model = Order
+
+
+class OrderItemsRepo(CRUDRepository):
+    model = OrderItems
+
+
+order_items_repo = OrderItemsRepo()
+order_repo = OrderRepo()
 user_repo = UsersRepo()
 product_repo = ProductRepo()
