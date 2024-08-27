@@ -1,20 +1,23 @@
 import threading
-import time
+from asyncio import sleep
 
 import requests  # You may need to install this using `pip install requests`
 from decouple import config
 
+# import time
 
-def send_request():
+
+async def send_request():
     while True:
         try:
+            await sleep(20)
             # Replace the URL with the actual endpoint you want to request
             response = requests.get("https://store-bot-xbhm.onrender.com")
             # Handle the response as needed
             print(f"Response Status Code: {response.status_code}")
         except Exception as e:
             print(f"An error occurred: {e}")
-        time.sleep(20)  # Wait for 20 seconds before sending the next request
+          # Wait for 20 seconds before sending the next request
 
 
 def start_periodic_requests():

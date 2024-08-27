@@ -42,7 +42,7 @@ async def show_products(message: types.Message, page: int, existing_message_id: 
     tlist = []
     for product in products:
         button = InlineKeyboardButton(
-            text=f"{product.name} - ${product.price}",
+            text=f"{product.name} - {product.price}",
             callback_data=f"product_{product.id}"
         )
         tlist.append(button)
@@ -66,9 +66,9 @@ async def show_products(message: types.Message, page: int, existing_message_id: 
     # keyboard.
 
     if existing_message_id:
-        await message.edit_text("Select a product:", reply_markup=keyboard)
+        await message.edit_text("Mahsulotni tanlang:", reply_markup=keyboard)
     else:
-        await message.answer("Select a product:", reply_markup=keyboard)
+        await message.answer("Mahsulotni tanlang:", reply_markup=keyboard)
 
 
 @router.callback_query(F.data.startswith("page_"))
@@ -86,7 +86,7 @@ async def add_to_order(callback_query: types.CallbackQuery, state: FSMContext):
         product = session.execute(product_stmt).scalars().first()
 
     if product:
-        await callback_query.message.answer(f"How many of {product.name} would you like to order?")
+        await callback_query.message.answer(f"{product.name} qancha miqdorda buyurtma qilasiz?")
         await state.update_data(product_id=product_id)
         await state.set_state(OrderProcessState.entering_quantity)
 
@@ -131,7 +131,7 @@ async def process_quantity(message: types.Message, state: FSMContext):
 
             await message.answer(f"{product.name} ({quantity} kg) savatchaga qo'shildi!")
         else:
-            await message.answer("Product not found.")
+            await message.answer("Product topilmadi")
 
     await state.clear()
 
