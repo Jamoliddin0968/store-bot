@@ -46,6 +46,7 @@ class OrderItems(BaseModel):
     count = Column(Float, nullable=False)
 
     order = relationship("Order")
+    product = relationship("Products")
 
     # def __str__(self) -> str:
     #     return f"{self.product_name} {self.count}"

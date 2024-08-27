@@ -1,3 +1,4 @@
+from worker import send_request
 import logging
 from contextlib import asynccontextmanager
 

@@ -22,8 +22,8 @@ def get_contact_share_markup():
 
 menu_markup = ReplyKeyboardMarkup(
     keyboard=[
-        [KeyboardButton(text=("🛒 Buyurtma berish")),
-         KeyboardButton(text=("🛒 Mening buyurtmalarim"))],
+        [KeyboardButton(text=("🛒 Mahsulotlar")),
+         KeyboardButton(text=("🛒 Savatcha"))],
         [
             KeyboardButton(text=("📞 Biz bilan bo'g'lanish")),
         ],

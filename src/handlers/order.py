@@ -2,13 +2,18 @@ from aiogram import F, Router, types
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
-from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from aiogram.types import (InlineKeyboardButton, InlineKeyboardMarkup,
+                           KeyboardButton, ReplyKeyboardMarkup,
+                           ReplyKeyboardRemove)
 from sqlalchemy.future import select
+from sqlalchemy.orm import joinedload
 
 from src.database import get_db
 from src.models import Order
 from src.models.order import OrderItems
 from src.models.products import Products
+
+from .keyboards import menu_markup
 
 router = Router()
 
@@ -21,7 +26,7 @@ class OrderProcessState(StatesGroup):
     entering_quantity = State()
 
 
-@router.message(Command('order'))
+@router.message(F.text == "🛒 Mahsulotlar")
 async def start_handler(message: types.Message):
     await show_products(message, page=0)
 
@@ -34,22 +39,31 @@ async def show_products(message: types.Message, page: int, existing_message_id: 
         products = products.scalars().all()
 
     lst = []
+    tlist = []
     for product in products:
         button = InlineKeyboardButton(
             text=f"{product.name} - ${product.price}",
             callback_data=f"product_{product.id}"
         )
-        lst.append(button)
+        tlist.append(button)
+        if len(tlist) == 2:
+            lst.append(tlist)
+            tlist = []
+    if tlist:
+        lst.append(tlist)
+        tlist = []
 
     # Adding pagination buttons
     if page > 0:
-        lst.append(InlineKeyboardButton(
+        tlist.append(InlineKeyboardButton(
             text="Previous", callback_data=f"page_{page-1}"))
     if len(products) == ITEMS_PER_PAGE:
-        lst.append(InlineKeyboardButton(
+        tlist.append(InlineKeyboardButton(
             text="Next", callback_data=f"page_{page+1}"))
-
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[lst])
+    if tlist:
+        lst.append(tlist)
+    keyboard = InlineKeyboardMarkup(inline_keyboard=lst)
+    # keyboard.
 
     if existing_message_id:
         await message.edit_text("Select a product:", reply_markup=keyboard)
@@ -120,3 +134,92 @@ async def process_quantity(message: types.Message, state: FSMContext):
             await message.answer("Product not found.")
 
     await state.clear()
+
+
+@router.message(F.text == "🛒 Savatcha")
+async def show_order(message: types.Message):
+    user_id = message.from_user.id
+    with get_db() as session:
+        # Retrieve the user's order
+        order_stmt = select(Order).where(Order.user_id == user_id)
+        order = session.execute(order_stmt).scalars().first()
+
+        if order:
+            order_items_stmt = select(OrderItems).where(
+                OrderItems.order_id == order.id).options(joinedload(OrderItems.product))
+            order_items = session.execute(order_items_stmt).scalars().all()
+
+            if order_items:
+                # Format the order summary as a numbered list
+                order_summary = "\n".join(
+                    [f"{i+1}. {item.product.name} - {item.count} kg" for i,
+                        item in enumerate(order_items)]
+                )
+            else:
+                order_summary = "No items in your order."
+
+            # Add action buttons for sending or canceling the order
+            action_buttons = [
+                InlineKeyboardButton(
+                    text="Send Order", callback_data="send_order"),
+                InlineKeyboardButton(text="Cancel Order",
+                                     callback_data="cancel_order")
+            ]
+            keyboard = InlineKeyboardMarkup(inline_keyboard=[action_buttons])
+
+            await message.answer(f"Your current order:\n{order_summary}", reply_markup=keyboard)
+        else:
+            await message.answer("You have no active orders.")
+    return None
+
+    # await callback_query.answer()
+
+
+@router.callback_query(F.data == "send_order")
+async def send_order(callback_query: types.CallbackQuery):
+    user_id = callback_query.from_user.id
+    with get_db() as session:
+        # Retrieve the user's order
+        order_stmt = select(Order).where(Order.user_id == user_id)
+        order = session.execute(order_stmt).scalars().first()
+
+        if order:
+            order_items_stmt = select(OrderItems).where(
+                OrderItems.order_id == order.id)
+            order_items = session.execute(order_items_stmt).scalars().all()
+
+            if order_items:
+                # Process sending order logic here
+                # For example, you might send an email or update a status
+                await callback_query.message.answer("Your order has been sent successfully!")
+
+            else:
+                await callback_query.message.answer("Your order is empty.")
+        else:
+            await callback_query.message.answer("No order found.")
+
+    # Hide the inline keyboard after action
+    await callback_query.message.edit_reply_markup(reply_markup=None)
+
+
+@router.callback_query(F.data == "cancel_order")
+async def cancel_order(callback_query: types.CallbackQuery):
+    user_id = callback_query.from_user.id
+    with get_db() as session:
+        # Retrieve and delete the user's order
+        order_stmt = select(Order).where(Order.user_id == user_id)
+        order = session.execute(order_stmt).scalars().first()
+
+        if order:
+            session.execute(select(OrderItems).where(
+                OrderItems.order_id == order.id))
+            session.commit()
+            session.delete(order)
+            session.commit()
+
+            await callback_query.message.answer("Your order has been canceled.")
+        else:
+            await callback_query.message.answer("No order found to cancel.")
+
+    # Hide the inline keyboard after action
+    await callback_query.message.edit_reply_markup(reply_markup=None)
