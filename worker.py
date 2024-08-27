@@ -1,3 +1,4 @@
+import asyncio
 import threading
 from asyncio import sleep
 
@@ -20,12 +21,12 @@ async def send_request():
           # Wait for 20 seconds before sending the next request
 
 
-def start_periodic_requests():
+async def start_periodic_requests():
     # Create and start a new thread
     request_thread = threading.Thread(target=send_request, daemon=True)
     if not config('DEBUG', False, cast=bool):
-        request_thread.start()
+        await send_request()
 
 
 # Start the periodic requests
-start_periodic_requests()
+asyncio.run(start_periodic_requests())
