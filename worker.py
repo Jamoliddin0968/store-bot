@@ -2,6 +2,7 @@ import threading
 import time
 
 import requests  # You may need to install this using `pip install requests`
+from decouple import config
 
 
 def send_request():
@@ -19,7 +20,8 @@ def send_request():
 def start_periodic_requests():
     # Create and start a new thread
     request_thread = threading.Thread(target=send_request, daemon=True)
-    request_thread.start()
+    if not config('DEBUG', False, cast=bool):
+        request_thread.start()
 
 
 # Start the periodic requests
