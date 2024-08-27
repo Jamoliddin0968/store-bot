@@ -1,4 +1,3 @@
-from worker import send_request
 import logging
 from contextlib import asynccontextmanager
 
@@ -16,6 +15,7 @@ from src.admin import admin_app
 # from src.admin import  admin_app
 from src.handlers import register_routes
 from src.sql_admin import app as admin_app
+from worker import start_periodic_requests
 
 router = Router()
 
@@ -33,6 +33,7 @@ dp = Dispatcher(storage=storage)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    await start_periodic_requests()
     await bot.delete_webhook()
     await bot.set_webhook(url=WEBHOOK_URL)
     yield

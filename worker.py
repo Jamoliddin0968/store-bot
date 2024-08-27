@@ -28,5 +28,4 @@ async def start_periodic_requests():
         await send_request()
 
 
-# Start the periodic requests
-asyncio.run(start_periodic_requests())
+
