@@ -98,7 +98,7 @@ async def process_quantity(message: types.Message, state: FSMContext):
     try:
         quantity = float(message.text)
     except ValueError:
-        await message.answer("Please enter a valid number.")
+        await message.answer("Iltimos osn kiriting ( 5, 4.5 , 3.1 ).")
         return
 
     data = await state.get_data()
@@ -161,15 +161,15 @@ async def show_order(message: types.Message):
             # Add action buttons for sending or canceling the order
             action_buttons = [
                 InlineKeyboardButton(
-                    text="Send Order", callback_data="send_order"),
-                InlineKeyboardButton(text="Cancel Order",
+                    text="Yuborish", callback_data="send_order"),
+                InlineKeyboardButton(text="Bekor qilish",
                                      callback_data="cancel_order")
             ]
             keyboard = InlineKeyboardMarkup(inline_keyboard=[action_buttons])
 
-            await message.answer(f"Your current order:\n{order_summary}", reply_markup=keyboard)
+            await message.answer(f"Faol buyurtmangiz:\n{order_summary}", reply_markup=keyboard)
         else:
-            await message.answer("You have no active orders.")
+            await message.answer("Sizda faol buyurtmalar yo'q")
     return None
 
     # await callback_query.answer()
@@ -191,12 +191,12 @@ async def send_order(callback_query: types.CallbackQuery):
             if order_items:
                 # Process sending order logic here
                 # For example, you might send an email or update a status
-                await callback_query.message.answer("Your order has been sent successfully!")
+                await callback_query.message.answer("Buyurta yuborildi!")
 
             else:
-                await callback_query.message.answer("Your order is empty.")
+                await callback_query.message.answer("Buyurtma bo'sh.")
         else:
-            await callback_query.message.answer("No order found.")
+            await callback_query.message.answer("buyurtma topilmadi.")
 
     # Hide the inline keyboard after action
     await callback_query.message.edit_reply_markup(reply_markup=None)

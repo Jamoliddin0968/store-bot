@@ -29,10 +29,3 @@ def start_periodic_requests():
 
 # Start the periodic requests
 start_periodic_requests()
-
-# Keep the main thread running
-try:
-    while True:
-        time.sleep(1)  # Main thread keeps running
-except KeyboardInterrupt:
-    print("Program terminated.")
