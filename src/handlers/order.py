@@ -129,7 +129,7 @@ async def process_quantity(message: types.Message, state: FSMContext):
             session.add(order_item)
             session.commit()
 
-            await message.answer(f"Added {quantity} of {product.name} to your order!")
+            await message.answer(f"{product.name} ({quantity} kg) savatchaga qo'shildi!")
         else:
             await message.answer("Product not found.")
 
