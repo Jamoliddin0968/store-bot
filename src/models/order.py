@@ -18,7 +18,7 @@ def get_current_datetime_tashkent():
 
 class OrderStatus(enum.Enum):
     PENDING = 'pending'
-    # sREJECTED = 'rejected'
+    ACTIVE = 'active'
     ACCEPTED = 'accepted'
 
 

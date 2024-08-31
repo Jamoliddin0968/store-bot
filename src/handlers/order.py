@@ -10,7 +10,7 @@ from sqlalchemy.orm import joinedload
 
 from src.database import get_db
 from src.models import Order
-from src.models.order import OrderItems
+from src.models.order import OrderItems, OrderStatus
 from src.models.products import Products
 
 from .keyboards import menu_markup
@@ -111,7 +111,8 @@ async def process_quantity(message: types.Message, state: FSMContext):
 
         if product:
             # Retrieve or create order
-            order_stmt = select(Order).where(Order.user_id == user_id)
+            order_stmt = select(Order).where(
+                Order.user_id == user_id, Order.status == OrderStatus.PENDING)
             order = session.execute(order_stmt).scalars().first()
 
             if not order:
@@ -141,7 +142,8 @@ async def show_order(message: types.Message):
     user_id = message.from_user.id
     with get_db() as session:
         # Retrieve the user's order
-        order_stmt = select(Order).where(Order.user_id == user_id)
+        order_stmt = select(Order).where(
+            Order.user_id == user_id, Order.status == OrderStatus.PENDING)
         order = session.execute(order_stmt).scalars().first()
 
         if order:
@@ -180,7 +182,8 @@ async def send_order(callback_query: types.CallbackQuery):
     user_id = callback_query.from_user.id
     with get_db() as session:
         # Retrieve the user's order
-        order_stmt = select(Order).where(Order.user_id == user_id)
+        order_stmt = select(Order).where(
+            Order.user_id == user_id, Order.status == OrderStatus.PENDING)
         order = session.execute(order_stmt).scalars().first()
 
         if order:
@@ -189,8 +192,9 @@ async def send_order(callback_query: types.CallbackQuery):
             order_items = session.execute(order_items_stmt).scalars().all()
 
             if order_items:
-                # Process sending order logic here
-                # For example, you might send an email or update a status
+                order.status = OrderStatus.ACTIVE
+                session.add(order)
+                session.commit()
                 await callback_query.message.answer("Buyurta yuborildi!")
 
             else:
@@ -207,13 +211,11 @@ async def cancel_order(callback_query: types.CallbackQuery):
     user_id = callback_query.from_user.id
     with get_db() as session:
         # Retrieve and delete the user's order
-        order_stmt = select(Order).where(Order.user_id == user_id)
+        order_stmt = select(Order).where(
+            Order.user_id == user_id, Order.status == OrderStatus.PENDING)
         order = session.execute(order_stmt).scalars().first()
 
         if order:
-            session.execute(select(OrderItems).where(
-                OrderItems.order_id == order.id))
-            session.commit()
             session.delete(order)
             session.commit()
 

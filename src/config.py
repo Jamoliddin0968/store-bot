@@ -12,6 +12,7 @@ from decouple import config
 # UPLOAD_DIRECTORY = config("UPLOAD_DIRECTORY", "upload")
 
 TOKEN = config("TOKEN")
+ADMIN_TOKEN = config("ADMIN_TOKEN")
 WEBHOOK_URL = config("WEBHOOK_URL")
 DATABASE_URL = "sqlite:///./test.db"
 GROUP_ID = config("GROUP_ID")

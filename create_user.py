@@ -1,3 +1,4 @@
+import asyncio
 import random
 from datetime import datetime, timedelta
 
@@ -37,9 +38,11 @@ def create_user(firstname, lastname, username, password, phone_number, tg_user_i
         "phone_number": phone_number,
         "tg_user_id": tg_user_id
     }
+    asyncio.run(user_repo.create(new_user))
 
     click.echo(f'User {username} created successfully!')
 
 
 if __name__ == '__main__':
+
     create_user()

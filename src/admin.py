@@ -5,15 +5,31 @@ from fastadmin import register
 from fastadmin.api.frameworks.fastapi.app import app as admin_app
 from fastadmin.models.orms.sqlalchemy import SqlAlchemyModelAdmin
 from passlib.context import CryptContext
+from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
+from sqlalchemy.orm import sessionmaker
 
 from src.database import get_db
 from src.models import Products, TgUsers, Users
 from src.repositories import user_repo
 
+DATABASE_URL = "sqlite+aiosqlite:///./test.db"
+
+# Create the async engine
+engine = create_async_engine(
+    DATABASE_URL,
+    # Set to True to log SQL queries
+)
+
+# Create a configured "Session" class
+async_session = sessionmaker(
+    bind=engine,
+    expire_on_commit=False,
+    class_=AsyncSession
+)
 password_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
-@register(Users, sqlalchemy_sessionmaker=get_db)
+@register(Users, sqlalchemy_sessionmaker=async_session)
 class UserAdmin(SqlAlchemyModelAdmin):
     exclude = ("hash_password",)
     list_display = ("id", "username", "is_superuser", "is_active")
@@ -30,7 +46,7 @@ class UserAdmin(SqlAlchemyModelAdmin):
         return user.id
 
 
-@register(Products)
+@register(Products, sqlalchemy_sessionmaker=async_session)
 class ProductAdmin(SqlAlchemyModelAdmin):
     list_display = ("id", "name", "price")
     list_display_links = ("id", "name")
